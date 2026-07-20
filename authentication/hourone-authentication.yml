@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/hourone-openapi-original.json
+docs: https://hourone.gitbook.io/api-docs/get-your-api-keys
+notes: >-
+  Primary auth is a single API key sent in the `api-key` request header (docs:
+  "Get Your API Keys"). Only one key is active at a time; generating a new key
+  revokes the previous one; keys are encrypted and cannot be retrieved after
+  creation. Keys are managed via GET/POST/DELETE /keys. The OpenAPI also declares
+  an HTTP bearer scheme. No OAuth2 / OIDC scopes exist, so no scopes/ artifact.
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: api-key
+  sources:
+  - openapi/hourone-openapi-original.json
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/hourone-openapi-original.json
