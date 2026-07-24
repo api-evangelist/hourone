@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: sizzle-server general playground API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: playground
+paths:
+  /playground/generate:
+    post:
+      tags:
+      - playground
+      summary: Generate
+      description: generate video
+      operationId: generate_playground_generate_post
+      parameters:
+      - required: false
+        schema:
+          $ref: '#/components/schemas/RealsPlatform'
+        name: reals-platform
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaygroundRequest'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaygroundResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /playground/videos:
+    get:
+      tags:
+      - playground
+      summary: Get Videos
+      description: get videos
+      operationId: get_videos_playground_videos_get
+      parameters:
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PlaygroundResponse'
+                type: array
+                title: Response Get Videos Playground Videos Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /playground/videos/{video_id}/download:
+    get:
+      tags:
+      - playground
+      summary: Download Video
+      description: download video
+      operationId: download_video_playground_videos__video_id__download_get
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Video Id
+        name: video_id
+        in: path
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaygroundDownloadResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /playground/videos/{video_id}/share:
+    put:
+      tags:
+      - playground
+      summary: Share Video
+      description: share video
+      operationId: share_video_playground_videos__video_id__share_put
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Video Id
+        name: video_id
+        in: path
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+components:
+  schemas:
+    PlaygroundDownloadResponse:
+      properties:
+        url:
+          type: string
+          title: Url
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - status
+      title: PlaygroundDownloadResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    RealsPlatform:
+      type: string
+      enum:
+      - mobile
+      - reals
+      - reals_api
+      title: RealsPlatform
+      description: An enumeration.
+    PlaygroundResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        title:
+          type: string
+          title: Title
+        created_at:
+          type: string
+          title: Created At
+        req_id:
+          type: string
+          title: Req Id
+        source_video:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Source Video
+        character_id:
+          type: string
+          title: Character Id
+        voice_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Voice Url
+        voice_id:
+          type: string
+          title: Voice Id
+        playback_id:
+          type: string
+          title: Playback Id
+        transcript:
+          type: string
+          title: Transcript
+        order_id:
+          type: string
+          title: Order Id
+        status:
+          type: string
+          title: Status
+        progress:
+          type: integer
+          title: Progress
+      type: object
+      title: PlaygroundResponse
+    PlaygroundRequest:
+      properties:
+        title:
+          type: string
+          title: Title
+        source_video:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Source Video
+        character_id:
+          type: string
+          title: Character Id
+        voice_url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Voice Url
+        voice_id:
+          type: string
+          title: Voice Id
+        transcript:
+          type: string
+          title: Transcript
+        order_id:
+          type: string
+          title: Order Id
+      type: object
+      title: PlaygroundRequest
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

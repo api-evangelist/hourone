@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: sizzle-server general keys API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: keys
+paths:
+  /keys:
+    get:
+      tags:
+      - keys
+      summary: Get Keys Ids
+      description: Get token by  token id
+      operationId: get_keys_ids_keys_get
+      parameters:
+      - required: false
+        schema:
+          type: string
+          title: As Client
+        name: as_client
+        in: query
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiIdsResponse'
+                type: array
+                title: Response Get Keys Ids Keys Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+    post:
+      tags:
+      - keys
+      summary: Generate Api Key
+      description: generate a api key for the current user
+      operationId: generate_api_key_keys_post
+      parameters:
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /keys/{key_id}:
+    delete:
+      tags:
+      - keys
+      summary: Revoke Api Key
+      description: Archive specific draft's scene
+      operationId: revoke_api_key_keys__key_id__delete
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Key Id
+        name: key_id
+        in: path
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+components:
+  schemas:
+    ApiKeyResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        key:
+          type: string
+          title: Key
+        created_at:
+          type: string
+          title: Created At
+        updated_at:
+          type: string
+          title: Updated At
+      type: object
+      required:
+      - id
+      - key
+      - created_at
+      - updated_at
+      title: ApiKeyResponse
+    ApiIdsResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        created_at:
+          type: string
+          title: Created At
+        updated_at:
+          type: string
+          title: Updated At
+      type: object
+      required:
+      - id
+      - created_at
+      - updated_at
+      title: ApiIdsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

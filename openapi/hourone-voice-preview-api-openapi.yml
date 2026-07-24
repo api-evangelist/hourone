@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: sizzle-server general voice-preview API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: voice-preview
+paths:
+  /voice-preview:
+    post:
+      tags:
+      - voice-preview
+      summary: Create Audio Preview
+      description: create a voice preview based on a source draft
+      operationId: create_audio_preview_voice_preview_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoicePreviewRequest'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVoicePreviewResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - APIKeyHeader: []
+  /voice-preview/{task_id}:
+    get:
+      tags:
+      - voice-preview
+      summary: Get Voice Preview
+      operationId: get_voice_preview_voice_preview__task_id__get
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Task Id
+        name: task_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskProgressResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - APIKeyHeader: []
+components:
+  schemas:
+    CreateVoicePreviewResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        transcript:
+          type: string
+          title: Transcript
+        voice_id:
+          type: string
+          title: Voice Id
+        req_id:
+          type: string
+          title: Req Id
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusTypes'
+          default: in_progress
+      type: object
+      required:
+      - id
+      - transcript
+      - voice_id
+      - req_id
+      title: CreateVoicePreviewResponse
+    StatusTypes:
+      type: string
+      enum:
+      - in_progress
+      - ready
+      - failed
+      title: StatusTypes
+      description: An enumeration.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TaskProgressResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        req_id:
+          type: string
+          title: Req Id
+        status:
+          $ref: '#/components/schemas/StatusTypes'
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - id
+      - req_id
+      - status
+      title: TaskProgressResponse
+    VoicePreviewRequest:
+      properties:
+        transcript:
+          type: string
+          title: Transcript
+        source_draft_id:
+          type: string
+          title: Source Draft Id
+      type: object
+      required:
+      - transcript
+      - source_draft_id
+      title: VoicePreviewRequest
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

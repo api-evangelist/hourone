@@ -1,0 +1,370 @@
+openapi: 3.1.0
+info:
+  title: sizzle-server general webhook API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: webhook
+paths:
+  /webhooks:
+    get:
+      tags:
+      - webhook
+      summary: Get Webhooks
+      description: get all webhooks
+      operationId: get_webhooks_webhooks_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WebhookResponse'
+                type: array
+                title: Response Get Webhooks Webhooks Get
+      security:
+      - HTTPBearer: []
+    post:
+      tags:
+      - webhook
+      summary: Create Webhook
+      description: Create webhook
+      operationId: create_webhook_webhooks_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /webhooks/{webhook_id}:
+    get:
+      tags:
+      - webhook
+      summary: Get Webhook
+      description: get one webhook
+      operationId: get_webhook_webhooks__webhook_id__get
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+    put:
+      tags:
+      - webhook
+      summary: Update Webhook
+      description: update webhook
+      operationId: update_webhook_webhooks__webhook_id__put
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWebhookRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+    delete:
+      tags:
+      - webhook
+      summary: Delete Webhook
+      description: delete webhook
+      operationId: delete_webhook_webhooks__webhook_id__delete
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /webhooks/{webhook_id}/secret:
+    put:
+      tags:
+      - webhook
+      summary: Regenerate Webhook Secret
+      description: regenerate webhook secret
+      operationId: regenerate_webhook_secret_webhooks__webhook_id__secret_put
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /webhooks/{webhook_id}/pause:
+    put:
+      tags:
+      - webhook
+      summary: Toggle Pause State
+      description: pause or unpause webhook
+      operationId: toggle_pause_state_webhooks__webhook_id__pause_put
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /webhooks/{webhook_id}/toggle-status:
+    put:
+      tags:
+      - webhook
+      summary: Toggle Active State
+      description: toggle webhook status between active and inactive states
+      operationId: toggle_active_state_webhooks__webhook_id__toggle_status_put
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Webhook Id
+        name: webhook_id
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+components:
+  schemas:
+    WebhookStatusOptions:
+      type: string
+      enum:
+      - active
+      - inactive
+      - paused
+      - pending
+      title: WebhookStatusOptions
+      description: An enumeration.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    WebhookResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        created_at:
+          type: string
+          title: Created At
+        updated_at:
+          type: string
+          title: Updated At
+        status:
+          $ref: '#/components/schemas/WebhookStatusOptions'
+        events:
+          items:
+            $ref: '#/components/schemas/EventName'
+          type: array
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        signing_secret:
+          type: string
+          title: Signing Secret
+      type: object
+      required:
+      - id
+      - name
+      - url
+      title: WebhookResponse
+    UpdateWebhookRequest:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        events:
+          items:
+            $ref: '#/components/schemas/EventName'
+          type: array
+      type: object
+      required:
+      - name
+      - url
+      title: UpdateWebhookRequest
+    WebhookRequest:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        events:
+          items:
+            $ref: '#/components/schemas/EventName'
+          type: array
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+      type: object
+      required:
+      - name
+      - events
+      - url
+      title: WebhookRequest
+    EventName:
+      type: string
+      enum:
+      - video.ready
+      - video.failed
+      title: EventName
+      description: An enumeration.
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: sizzle-server general API
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: general
+paths:
+  /examples:
+    post:
+      tags:
+      - general
+      summary: Create Example
+      description: create examples
+      operationId: create_example_examples_post
+      parameters:
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExampleRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExampleResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /examples/create-video:
+    get:
+      tags:
+      - general
+      summary: Create Video Call Example
+      description: get crate video call example
+      operationId: create_video_call_example_examples_create_video_get
+      parameters:
+      - required: true
+        schema:
+          type: string
+          title: Draft Id
+        name: draft_id
+        in: query
+      - required: false
+        schema:
+          type: string
+          title: Example Type
+          default: create
+        name: example_type
+        in: query
+      - required: false
+        schema:
+          type: string
+          title: Workspace-Id
+        name: workspace-id
+        in: header
+      - required: false
+        schema:
+          type: string
+          title: Team-Id
+        name: team-id
+        in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExampleResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /analytics/summary:
+    get:
+      tags:
+      - general
+      summary: Get Summary
+      description: get analytics summary
+      operationId: get_summary_analytics_summary_get
+      parameters:
+      - required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/UsageBreakdown'
+          default: monthly
+        name: breakdown
+        in: query
+      - required: false
+        schema:
+          type: string
+          format: date
+          title: From Date
+        name: from_date
+        in: query
+      - required: false
+        schema:
+          type: string
+          format: date
+          title: To Date
+        name: to_date
+        in: query
+      - required: false
+        schema:
+          type: string
+          title: Correlation Id
+        name: correlation_id
+        in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UsageResponse'
+                type: array
+                title: Response Get Summary Analytics Summary Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - APIKeyHeader: []
+components:
+  schemas:
+    CreateExampleRequest:
+      properties:
+        type:
+          $ref: '#/components/schemas/ExampleTypes'
+        draft_id:
+          type: string
+          title: Draft Id
+        workflow_id:
+          type: string
+          title: Workflow Id
+      type: object
+      required:
+      - type
+      title: CreateExampleRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ExampleTypes:
+      type: string
+      enum:
+      - create
+      - override
+      - create_video_from_workflow
+      title: ExampleTypes
+      description: An enumeration.
+    UsageResponse:
+      properties:
+        day:
+          type: integer
+          title: Day
+        week:
+          type: integer
+          title: Week
+        month:
+          type: integer
+          title: Month
+        year:
+          type: integer
+          title: Year
+        videos_created:
+          type: integer
+          title: Videos Created
+        total_duration:
+          type: integer
+          title: Total Duration
+      type: object
+      required:
+      - videos_created
+      - total_duration
+      title: UsageResponse
+    UsageBreakdown:
+      type: string
+      enum:
+      - daily
+      - weekly
+      - monthly
+      title: UsageBreakdown
+      description: An enumeration.
+    ExampleResponse:
+      properties:
+        curl:
+          type: string
+          title: Curl
+        json_request:
+          type: object
+          title: Json Request
+      type: object
+      required:
+      - curl
+      - json_request
+      title: ExampleResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+    HTTPBearer:
+      type: http
+      scheme: bearer
