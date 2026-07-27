@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://hourone.gitbook.io/api-docs
+derived_from: openapi/hourone-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.makereals.com/api/v1
+  notes: >-
+    The API is served under an explicit /api/v1 path prefix. No dated or header-based
+    versioning is documented.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No public deprecation policy or RFC 8594 Sunset/Deprecation header support is
+    documented. No operations are flagged deprecated in the OpenAPI.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+support:
+  help_center: https://help.hourone.ai/hc/en-us/categories/8918170914449-Hour-One
+notes: >-
+  Searched the public docs (help.hourone.ai, hourone.gitbook.io) and found no
+  status page, SLA, or deprecation policy published, so no StatusPage/Deprecation
+  canonical pointers are emitted. Rebrand note: the API is hosted on
+  api.makereals.com ("MakeReals"), the developer surface of Hour One.

@@ -1,25 +1,221 @@
 aid: hourone
 name: Hourone
-description: Hourone is a company surfaced as a portfolio company of kindred-ventures and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Hour One (developer surface "MakeReals") is an AI video-generation platform that
+  turns text, scripts and data into studio-quality videos fronted by lifelike AI
+  presenters (characters) and text-to-speech voices. Its REST API lets developers
+  create videos programmatically two ways — from a Blueprint (an existing HourOne
+  studio project/template) or Dynamically (scenes built from scratch with media,
+  text, palette, character and voice) — preview voices, generate multi-language
+  subtitles, pull usage analytics, manage API keys, and subscribe to
+  video.ready / video.failed webhooks. The API is asynchronous (create, then poll
+  by id or receive a signed webhook) and authenticates with a single api-key header.
+  Common uses include personalized video at scale, L&D and training content, CRM/LMS
+  automation, and localized marketing video. Hour One is a portfolio company of
+  Kindred Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/hourone/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - kindred-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://hourone.ai/
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Video
+- Video Generation
+- Generative AI
+- AI Avatars
+- Text to Speech
+- Media
+- Content Creation
+- Webhooks
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: hourone:hourone-general-api
+  name: Hourone general API
+  description: The general API from Hourone — 3 operation(s) for general.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - general
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-general-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
+- aid: hourone:hourone-keys-api
+  name: Hourone keys API
+  description: The keys API from Hourone — 2 operation(s) for keys.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - keys
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-keys-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
+- aid: hourone:hourone-playground-api
+  name: Hourone playground API
+  description: The playground API from Hourone — 4 operation(s) for playground.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - playground
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-playground-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
+- aid: hourone:hourone-videos-api
+  name: Hourone videos API
+  description: The videos API from Hourone — 4 operation(s) for videos.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - videos
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-videos-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
+- aid: hourone:hourone-voice-preview-api
+  name: Hourone voice-preview API
+  description: The voice-preview API from Hourone — 2 operation(s) for voice-preview.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - voice-preview
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-voice-preview-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
+- aid: hourone:hourone-webhook-api
+  name: Hourone webhook API
+  description: The webhook API from Hourone — 5 operation(s) for webhook.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/hourone-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: GettingStarted
+    url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+  - type: Authentication
+    url: authentication/hourone-authentication.yml
+  - type: Webhooks
+    url: asyncapi/hourone-webhooks.yml
 common:
 - type: Website
   url: https://hourone.ai/
+- type: DeveloperPortal
+  url: https://hourone.gitbook.io/api-docs
+- type: Documentation
+  url: https://hourone.gitbook.io/api-docs
+- type: APIReference
+  url: https://hourone.gitbook.io/api-docs/reference/api-reference
+- type: GettingStarted
+  url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+- type: Support
+  url: https://help.hourone.ai/hc/en-us/categories/8918170914449-Hour-One
+- type: GitHubOrganization
+  url: https://github.com/hourone-ai
+- type: SignUp
+  url: https://app.hourone.ai
+- type: OpenAPI
+  url: openapi/hourone-openapi-original.json
+- type: Authentication
+  url: authentication/hourone-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/hourone-agentic-access.yml
+- type: Webhooks
+  url: asyncapi/hourone-webhooks.yml
+- type: Conventions
+  url: conventions/hourone-conventions.yml
+- type: ErrorCatalog
+  url: errors/hourone-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/hourone-lifecycle.yml
+- type: Conformance
+  url: conformance/hourone-conformance.yml
+- type: DataModel
+  url: data-model/hourone-data-model.yml
+- type: MCPServer
+  url: mcp/hourone-mcp.yml
+- type: LLMsTxt
+  url: llms/hourone-llms.txt
+- type: Overlay
+  url: overlays/hourone-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hourone-openapi-original.json
+docs: https://hourone.gitbook.io/api-docs/reference/api-reference
+format: fastapi-detail
+notes: >-
+  The HourOne / MakeReals API is a FastAPI service (title "sizzle-server").
+  It does not emit RFC 9457 application/problem+json. Validation failures return
+  HTTP 422 with a FastAPI `{"detail": [{"loc": [...], "msg": "...", "type": "..."}]}`
+  envelope (schema HTTPValidationError). Authentication failures are returned when
+  a request omits the `api-key` header. Every 422 below is declared on its operation
+  in the OpenAPI; envelope shape is uniform across the API.
+envelope:
+  content_type: application/json
+  schema: HTTPValidationError
+  shape: '{ "detail": [ { "loc": ["body|query|path", index], "msg": "string", "type": "string" } ] }'
+problems:
+  - status: 422
+    title: Validation Error
+    schema: HTTPValidationError
+    description: >-
+      Request body, path, or query parameters failed validation (missing required
+      field, wrong type, palette size mismatch, transcript length, unsupported
+      subtitle language, breakdown timeframe out of range, etc).
+    applies_to_operations:
+      - create_video_videos_post
+      - get_video_by_id_videos__video_id__get
+      - delete_video_by_id_videos__video_id__delete
+      - create_subtitles_videos__video_id__subtitles_post
+      - get_video_metadata_videos__video_id__metadata_get
+      - create_audio_preview_voice_preview_post
+      - get_voice_preview_voice_preview__task_id__get
+      - create_example_examples_post
+      - create_video_call_example_examples_create_video_get
+      - get_summary_analytics_summary_get
+      - generate_api_key_keys_post
+      - revoke_api_key_keys__key_id__delete
+      - create_webhook_webhooks_post
+      - update_webhook_webhooks__webhook_id__put
+      - delete_webhook_webhooks__webhook_id__delete
+  - status: 401
+    title: Missing or invalid API key
+    schema: null
+    description: >-
+      Documented in "Get Your API Keys": any request that does not include a valid
+      `api-key` header is rejected. Not enumerated per-operation in the OpenAPI, but
+      applies to every authenticated endpoint. Regenerating a key revokes prior keys.
+    source_docs: https://hourone.gitbook.io/api-docs/get-your-api-keys
+domain_errors:
+  - context: create_video
+    condition: palette size does not match the template
+    behavior: >-
+      Returns an error indicating the expected palette size (documented in the
+      Dynamic Quick Start).
+  - context: create_subtitles
+    condition: video has not finished processing
+    behavior: >-
+      Subtitles are only available after the video status is `ready`; requesting
+      earlier fails.
+  - context: analytics_summary
+    condition: timeframe exceeds allowed window for the chosen breakdown
+    behavior: >-
+      monthly/weekly breakdowns must span < 1 year; daily breakdown must span < 1 month.

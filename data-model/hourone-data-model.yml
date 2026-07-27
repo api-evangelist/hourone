@@ -1,0 +1,78 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hourone-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from OpenAPI component schemas and id-reference
+  fields in the HourOne (MakeReals) API. Relationships inferred from *_id fields and
+  $ref nesting; id prefixes/domains are not published so are left null.
+entities:
+  - name: Video
+    schema: VideoResponse
+    id_field: id
+    fields: [id, name, status, progress, req_id, draft_id, source_draft_id, recipe_id, palette_id, character_id, voice_id, scenes, video_player_url, download_url]
+    status_enum: [not_started, started, processing, ready, published, failed, stopped, cancelled]
+    relationships:
+      - type: belongs_to
+        target: Draft
+        via: source_draft_id
+      - type: belongs_to
+        target: Recipe
+        via: recipe_id
+      - type: belongs_to
+        target: Folder
+        via: folder_id
+      - type: belongs_to
+        target: Palette
+        via: palette_id
+      - type: belongs_to
+        target: Character
+        via: character_id
+      - type: belongs_to
+        target: Voice
+        via: voice_id
+      - type: has_many
+        target: Scene
+        via: scenes
+  - name: Scene
+    schema: VideoScene
+    fields: [name, media, texts, transcript, voice_recording_url, character_id, voice_id]
+    relationships:
+      - type: belongs_to
+        target: Character
+        via: character_id
+      - type: belongs_to
+        target: Voice
+        via: voice_id
+  - name: VoicePreview
+    schema: CreateVoicePreviewResponse
+    id_field: id
+    fields: [id, transcript, voice_id, req_id, status]
+    relationships:
+      - type: belongs_to
+        target: Voice
+        via: voice_id
+      - type: belongs_to
+        target: Draft
+        via: source_draft_id
+  - name: Webhook
+    schema: WebhookResponse
+    id_field: id
+    fields: [id, name, description, created_at, updated_at, status, events, url, signing_secret]
+    status_enum: [active, inactive, paused, pending]
+    events: [video.ready, video.failed]
+  - name: ApiKey
+    schema: ApiKeyResponse
+    id_field: id
+    fields: [id, key, created_at, updated_at]
+  - name: Draft
+    note: >-
+      Referenced by source_draft_id / draft_id. A Draft is a project created in the
+      HourOne studio (app.hourone.ai) that serves as a Blueprint for API video creation.
+      Not exposed as its own API resource.
+  - name: Palette
+    note: Color palette bound to a template; palette size must match the template.
+  - name: Character
+    note: AI presenter/avatar selected per video or per scene.
+  - name: Voice
+    note: TTS voice selected per video or per scene; previewable via /voice-preview.
+render: null

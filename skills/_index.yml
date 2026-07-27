@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/hourone-openapi-original.json
+skills:
+  - file: hourone-create-video-from-blueprint.md
+    name: Create a video from a Blueprint and wait for it
+    api: openapi/hourone-openapi-original.json
+    operations: [create_video_videos_post, get_video_by_id_videos__video_id__get]
+  - file: hourone-dynamic-video-with-voice-preview.md
+    name: Preview a voice, then build a dynamic video
+    api: openapi/hourone-openapi-original.json
+    operations:
+      - create_audio_preview_voice_preview_post
+      - get_voice_preview_voice_preview__task_id__get
+      - create_video_videos_post
+      - get_video_by_id_videos__video_id__get
+      - create_subtitles_videos__video_id__subtitles_post
+  - file: hourone-subscribe-webhooks.md
+    name: Subscribe to video webhooks and verify signatures
+    api: openapi/hourone-openapi-original.json
+    operations:
+      - create_webhook_webhooks_post
+      - get_webhooks_webhooks_get
+      - regenerate_webhook_secret_webhooks__webhook_id__secret_put

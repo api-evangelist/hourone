@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for HourOne (MakeReals) API
+  version: 1.0.0
+extends: openapi/hourone-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      x-provider: hourone
+      x-product: MakeReals (Hour One AI video generation)
+      description: >-
+        HourOne (MakeReals) REST API for programmatic AI video generation. Create
+        videos from a Blueprint (an existing studio project/template) or Dynamically
+        (scenes built from scratch with media, text, palette, AI character and voice),
+        preview voices, generate subtitles, pull analytics, manage API keys, and
+        subscribe to video.ready / video.failed webhooks. Asynchronous: create then
+        poll by id or receive a webhook. Auth via the `api-key` header.
+  - target: $.servers
+    update:
+      - url: https://api.makereals.com/api/v1
+        description: Production (canonical absolute base URL; source spec ships a relative /api/v1)
+  - target: $.info
+    update:
+      x-api-evangelist-artifacts:
+        authentication: authentication/hourone-authentication.yml
+        conventions: conventions/hourone-conventions.yml
+        errors: errors/hourone-problem-types.yml
+        webhooks: asyncapi/hourone-webhooks.yml
+        data_model: data-model/hourone-data-model.yml
+        lifecycle: lifecycle/hourone-lifecycle.yml
+        agentic_access: agentic-access/hourone-agentic-access.yml

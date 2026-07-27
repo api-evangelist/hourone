@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: searched
+source: https://hourone.gitbook.io/api-docs
+derived_from: openapi/hourone-openapi-original.json
+summary: >-
+  Cross-cutting request/response semantics for the HourOne (MakeReals) video-generation
+  REST API. The API is asynchronous: video and voice-preview creation return a task
+  with a status you poll (GET by id) or receive via webhook. Auth is a single API-key
+  header. No idempotency-key contract is documented.
+authentication:
+  style: api-key-header
+  header: api-key
+  bearer_alternative: true         # HTTPBearer scheme also declared in the OpenAPI
+  notes: >-
+    Only one API key is active at a time; generating a new key revokes previous ones.
+    Keys are encrypted and cannot be retrieved after creation.
+  docs: https://hourone.gitbook.io/api-docs/get-your-api-keys
+base_url: https://api.makereals.com/api/v1
+async_model:
+  pattern: create-then-poll-or-webhook
+  create_returns: task/video id + status (VideoStatusEnum / StatusTypes)
+  poll: GET /videos/{video_id}  and  GET /voice-preview/{task_id}
+  video_status_values: [not_started, started, processing, ready, published, failed, stopped, cancelled]
+  task_status_values: [in_progress, ready, failed]
+  webhook_alternative: video.ready / video.failed events (see asyncapi/hourone-webhooks.yml)
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or idempotent-retry contract is documented for this API;
+    create operations are not declared idempotent. Do NOT emit an Idempotency pointer.
+pagination:
+  supported: false
+  notes: >-
+    GET /videos declares no pagination/limit/offset/cursor parameters in the OpenAPI;
+    no pagination convention is documented.
+correlation:
+  field: correlation_id
+  usage: >-
+    Optional identifier set on video creation (NewVideoRequest / WorkflowVideoRequest)
+    and used to filter the analytics summary by a caller-defined group.
+request_body:
+  content_type: application/json
+  create_video_methods:
+    - blueprint: source/template project id (source_draft_id / template_id) drives structure
+    - dynamic: scenes[] built from scratch with media, texts, transcript, palette, character, voice
+error_envelope:
+  content_type: application/json
+  shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  cross_ref: errors/hourone-problem-types.yml
+webhooks:
+  signature_header: x-hourone-signature
+  algorithm: HMAC-SHA256
+  events: [video.ready, video.failed]
+  cross_ref: asyncapi/hourone-webhooks.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  cross_ref: lifecycle/hourone-lifecycle.yml
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or quota policy documented in the public API docs.
+cross_links:
+  authentication: authentication/hourone-authentication.yml
+  errors: errors/hourone-problem-types.yml
+  lifecycle: lifecycle/hourone-lifecycle.yml
+  data_model: data-model/hourone-data-model.yml

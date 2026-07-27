@@ -1,0 +1,24 @@
+{
+  "provider": "hourone",
+  "sources": [
+    "hourone-general-api-openapi.yml",
+    "hourone-keys-api-openapi.yml",
+    "hourone-playground-api-openapi.yml",
+    "hourone-videos-api-openapi.yml",
+    "hourone-voice-preview-api-openapi.yml",
+    "hourone-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "hourone-general-api-openapi.yml",
+    "hourone-keys-api-openapi.yml",
+    "hourone-playground-api-openapi.yml",
+    "hourone-videos-api-openapi.yml",
+    "hourone-voice-preview-api-openapi.yml",
+    "hourone-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

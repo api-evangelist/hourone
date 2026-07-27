@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hourone-openapi-original.json
+notes: >-
+  Cross-cutting standards conformance derived from the OpenAPI and the public docs.
+  No published compliance program (SOC 2 / ISO 27001 / etc.) was found on the
+  developer surface, so no `Compliance` pointer is emitted.
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: openapi 3.0.2 document published (title "sizzle-server")
+  - id: apikey-auth
+    conforms: true
+    evidence: securitySchemes APIKeyHeader (apiKey in header "api-key")
+  - id: http-bearer
+    conforms: true
+    evidence: securitySchemes HTTPBearer (http bearer) declared
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securityScheme declared
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use FastAPI `{detail:[...]}` envelope, not application/problem+json
+  - id: webhooks-hmac-signature
+    conforms: true
+    evidence: webhook requests signed with x-hourone-signature (HMAC-SHA256)
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: no deprecation/sunset policy documented
+  - id: pagination
+    conforms: false
+    evidence: GET /videos declares no pagination parameters
+  - id: idempotency
+    conforms: false
+    evidence: no Idempotency-Key contract documented
+  - id: fhir-r4
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: json-api
+    conforms: false

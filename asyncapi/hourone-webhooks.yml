@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: searched
+source: https://hourone.gitbook.io/api-docs/webhooks
+type: Webhooks
+summary: >-
+  HourOne (MakeReals) publishes a webhook surface for asynchronous video status
+  notifications. Webhooks are created/managed via the REST API (/webhooks) or the
+  platform UI. No AsyncAPI document is published, so this captures the webhook
+  catalog directly (not fabricated as an AsyncAPI spec).
+delivery:
+  transport: https
+  method: POST
+  security:
+    signature_header: x-hourone-signature
+    algorithm: HMAC-SHA256
+    verification: >-
+      Compute HMAC-SHA256 of the raw request body with the webhook signing secret
+      and compare (constant-time) to the x-hourone-signature header value.
+  signing_secret: generated per webhook; regenerable via PUT /webhooks/{webhook_id}/secret
+management_api:
+  base_url: https://api.makereals.com/api/v1
+  operations:
+    - GET /webhooks
+    - POST /webhooks
+    - GET /webhooks/{webhook_id}
+    - PUT /webhooks/{webhook_id}
+    - DELETE /webhooks/{webhook_id}
+    - PUT /webhooks/{webhook_id}/secret
+    - PUT /webhooks/{webhook_id}/pause
+    - PUT /webhooks/{webhook_id}/toggle-status
+  endpoint_status: [active, inactive, paused, pending]
+events:
+  - name: video.ready
+    description: A video finished processing and is ready to download / play.
+    payload:
+      event_name: video_ready
+      data:
+        id: video id
+        req_id: request id
+        draft_id: source draft id
+        status: ready
+  - name: video.failed
+    description: A video failed to process.
+    payload:
+      event_name: video_failed
+      data:
+        id: video id
+        req_id: request id
+        draft_id: source draft id
+        status: failed
+payload_model:
+  name: WebHookEvent
+  shape: '{ "event_name": "string", "data": { "id": "string", "req_id": "string", "draft_id": "string", "status": "ready|failed" } }'
+cross_links:
+  conventions: conventions/hourone-conventions.yml
+  openapi: openapi/hourone-openapi-original.json
