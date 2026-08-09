@@ -1,0 +1,92 @@
+generated: '2026-07-19'
+method: generated
+source: https://hourone.gitbook.io/api-docs/webhooks.md
+spec_type: AsyncAPI
+x-note: >-
+  Faithfully generated from Hour One's published webhook documentation (event
+  names, payload model, and HMAC-SHA256 x-hourone-signature verification). No
+  provider-published AsyncAPI document exists; the webhook contract itself is real.
+asyncapi: 3.0.0
+info:
+  title: Hour One (MakeReals) Webhooks
+  version: 1.0.0
+  description: >-
+    Outbound webhook notifications for video processing lifecycle. Hour One POSTs a
+    signed JSON payload to your registered endpoint when a video finishes rendering
+    or fails. Each request carries an x-hourone-signature header: an HMAC-SHA256 hex
+    digest of the raw request body computed with the per-webhook signing secret.
+defaultContentType: application/json
+channels:
+  videoEvents:
+    address: '{subscriberUrl}'
+    description: The subscriber-supplied HTTPS endpoint registered via POST /webhooks.
+    parameters:
+      subscriberUrl:
+        description: The URL configured on the webhook resource.
+    messages:
+      videoReady:
+        $ref: '#/components/messages/VideoReady'
+      videoFailed:
+        $ref: '#/components/messages/VideoFailed'
+operations:
+  receiveVideoReady:
+    action: receive
+    channel:
+      $ref: '#/channels/videoEvents'
+    messages:
+    - $ref: '#/channels/videoEvents/messages/videoReady'
+  receiveVideoFailed:
+    action: receive
+    channel:
+      $ref: '#/channels/videoEvents'
+    messages:
+    - $ref: '#/channels/videoEvents/messages/videoFailed'
+components:
+  messages:
+    VideoReady:
+      name: video.ready
+      title: Video ready
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-hourone-signature:
+            type: string
+            description: HMAC-SHA256 hex digest of the raw body, keyed by the webhook signing secret.
+      payload:
+        $ref: '#/components/schemas/WebhookEvent'
+    VideoFailed:
+      name: video.failed
+      title: Video failed
+      contentType: application/json
+      headers:
+        type: object
+        properties:
+          x-hourone-signature:
+            type: string
+            description: HMAC-SHA256 hex digest of the raw body, keyed by the webhook signing secret.
+      payload:
+        $ref: '#/components/schemas/WebhookEvent'
+  schemas:
+    WebhookEvent:
+      type: object
+      required: [event_name, data]
+      properties:
+        event_name:
+          type: string
+          enum: [video.ready, video.failed]
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier for the video.
+            req_id:
+              type: string
+              description: The request id associated with the video processing.
+            draft_id:
+              type: string
+              description: The draft id related to the video, if applicable.
+            status:
+              type: string
+              description: Current status of the video (e.g. ready, failed).

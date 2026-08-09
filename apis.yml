@@ -1,18 +1,14 @@
 aid: hourone
 name: Hourone
-description: >-
-  Hour One (developer surface "MakeReals") is an AI video-generation platform that
-  turns text, scripts and data into studio-quality videos fronted by lifelike AI
-  presenters (characters) and text-to-speech voices. Its REST API lets developers
-  create videos programmatically two ways — from a Blueprint (an existing HourOne
-  studio project/template) or Dynamically (scenes built from scratch with media,
-  text, palette, character and voice) — preview voices, generate multi-language
-  subtitles, pull usage analytics, manage API keys, and subscribe to
-  video.ready / video.failed webhooks. The API is asynchronous (create, then poll
-  by id or receive a signed webhook) and authenticates with a single api-key header.
-  Common uses include personalized video at scale, L&D and training content, CRM/LMS
-  automation, and localized marketing video. Hour One is a portfolio company of
-  Kindred Ventures.
+description: Hour One (developer surface "MakeReals") is an AI video-generation platform that turns text,
+  scripts and data into studio-quality videos fronted by lifelike AI presenters (characters) and text-to-speech
+  voices. Its REST API lets developers create videos programmatically two ways — from a Blueprint (an
+  existing HourOne studio project/template) or Dynamically (scenes built from scratch with media, text,
+  palette, character and voice) — preview voices, generate multi-language subtitles, pull usage analytics,
+  manage API keys, and subscribe to video.ready / video.failed webhooks. The API is asynchronous (create,
+  then poll by id or receive a signed webhook) and authenticates with a single api-key header. Common
+  uses include personalized video at scale, L&D and training content, CRM/LMS automation, and localized
+  marketing video. Hour One is a portfolio company of Kindred Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/hourone/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -33,7 +29,7 @@ accessModel:
 image: https://hourone.ai/
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-08'
 tags:
 - Company
 - Artificial Intelligence
@@ -214,8 +210,12 @@ common:
   url: overlays/hourone-overlay.yaml
 - type: AgentSkill
   url: skills/_index.yml
+- type: AsyncAPI
+  url: asyncapi/hourone-webhooks-asyncapi.yml
 x-enrichment:
   date: '2026-07-19'
   status: backfilled
   pass: local-v1
   note: backfilled from .gitignore signal + verified work evidence
+x-merged-from:
+- hour-one

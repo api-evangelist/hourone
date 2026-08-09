@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Hour One (MakeReals API)
+  version: 1.0.0
+extends: openapi/hour-one-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: hour-one
+    x-apievangelist-base-url: https://api.makereals.com/api/v1
+    x-apievangelist-docs: https://hourone.gitbook.io/api-docs
+    x-apievangelist-product: AI presenter / avatar video generation
+    x-apievangelist-notes: >-
+      OpenAPI title is the internal service name (sizzle-server); the public product
+      is the Hour One / MakeReals Studio API. Base server is emitted as a relative
+      /api/v1 in this spec; the production host is api.makereals.com.
+- target: $.servers
+  update:
+  - url: https://api.makereals.com/api/v1
+    description: Production (added by API Evangelist; original spec used a relative /api/v1)
+- target: $.info
+  update:
+    x-apievangelist-auth:
+      video_api: api-key header
+      account_api: HTTP Bearer token
+    x-apievangelist-webhooks:
+      events: [video.ready, video.failed]
+      signature_header: x-hourone-signature
+      signature_algorithm: HMAC-SHA256
