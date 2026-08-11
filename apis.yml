@@ -185,7 +185,7 @@ common:
 - type: SignUp
   url: https://app.hourone.ai
 - type: OpenAPI
-  url: openapi/hourone-openapi-original.json
+  url: openapi/_original/hourone-openapi-original.json
 - type: Authentication
   url: authentication/hourone-authentication.yml
 - type: AgenticAccess
