@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sizzle-server general keys API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Keys Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/keys",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "as_client",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get token by  token id"
+        },
+        {
+          "info": {
+            "name": "Generate Api Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/keys",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "generate a api key for the current user"
+        },
+        {
+          "info": {
+            "name": "Revoke Api Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/keys/:key_id",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Archive specific draft's scene"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

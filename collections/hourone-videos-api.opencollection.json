@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sizzle-server general videos API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/videos",
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get videos"
+        },
+        {
+          "info": {
+            "name": "Create Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/videos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a video based on a source draft or a recipe_id"
+        },
+        {
+          "info": {
+            "name": "Get Video By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/videos/:video_id",
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get video by id"
+        },
+        {
+          "info": {
+            "name": "Delete Video By Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v1/videos/:video_id",
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete video by id"
+        },
+        {
+          "info": {
+            "name": "Create Subtitles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/videos/:video_id/subtitles",
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create subtitles"
+        },
+        {
+          "info": {
+            "name": "Get Video Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/videos/:video_id/metadata",
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get video by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

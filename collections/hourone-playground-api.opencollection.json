@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sizzle-server general playground API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "playground",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/playground/generate",
+            "headers": [
+              {
+                "name": "reals-platform",
+                "value": ""
+              },
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "generate video"
+        },
+        {
+          "info": {
+            "name": "Get Videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/playground/videos",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "get videos"
+        },
+        {
+          "info": {
+            "name": "Download Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/playground/videos/:video_id/download",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "download video"
+        },
+        {
+          "info": {
+            "name": "Share Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/v1/playground/videos/:video_id/share",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "video_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "share video"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

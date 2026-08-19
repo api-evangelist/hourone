@@ -2,11 +2,9 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/hourone-openapi-original.json
-notes: >-
-  No official hosted/remote MCP server was found for HourOne / MakeReals (searched
-  the docs, npm @modelcontextprotocol, and MCP registries). This is a DERIVED
-  candidate tool list — one tool per OpenAPI operation — to seed an MCP server that
-  wraps the video-generation API. Auth is the `api-key` header.
+notes: No official hosted/remote MCP server was found for HourOne / MakeReals (searched the docs, npm
+  @modelcontextprotocol, and MCP registries). This is a DERIVED candidate tool list — one tool per OpenAPI
+  operation — to seed an MCP server that wraps the video-generation API. Auth is the `api-key` header.
 server:
   name: hourone
   transport: http
@@ -15,133 +13,139 @@ server:
     type: apiKey
     header: api-key
 tools:
-  - name: list_videos_videos_get
-    method: GET
-    path: /videos
-    description: "List Videos"
-    source_operation: openapi/hourone-openapi-original.json#list_videos_videos_get
-  - name: create_video_videos_post
-    method: POST
-    path: /videos
-    description: "Create Video"
-    source_operation: openapi/hourone-openapi-original.json#create_video_videos_post
-  - name: get_video_by_id_videos__video_id__get
-    method: GET
-    path: /videos/{video_id}
-    description: "Get Video By Id"
-    source_operation: openapi/hourone-openapi-original.json#get_video_by_id_videos__video_id__get
-  - name: delete_video_by_id_videos__video_id__delete
-    method: DELETE
-    path: /videos/{video_id}
-    description: "Delete Video By Id"
-    source_operation: openapi/hourone-openapi-original.json#delete_video_by_id_videos__video_id__delete
-  - name: create_subtitles_videos__video_id__subtitles_post
-    method: POST
-    path: /videos/{video_id}/subtitles
-    description: "Create Subtitles"
-    source_operation: openapi/hourone-openapi-original.json#create_subtitles_videos__video_id__subtitles_post
-  - name: get_video_metadata_videos__video_id__metadata_get
-    method: GET
-    path: /videos/{video_id}/metadata
-    description: "Get Video Metadata"
-    source_operation: openapi/hourone-openapi-original.json#get_video_metadata_videos__video_id__metadata_get
-  - name: create_audio_preview_voice_preview_post
-    method: POST
-    path: /voice-preview
-    description: "Create Audio Preview"
-    source_operation: openapi/hourone-openapi-original.json#create_audio_preview_voice_preview_post
-  - name: get_voice_preview_voice_preview__task_id__get
-    method: GET
-    path: /voice-preview/{task_id}
-    description: "Get Voice Preview"
-    source_operation: openapi/hourone-openapi-original.json#get_voice_preview_voice_preview__task_id__get
-  - name: create_example_examples_post
-    method: POST
-    path: /examples
-    description: "Create Example"
-    source_operation: openapi/hourone-openapi-original.json#create_example_examples_post
-  - name: create_video_call_example_examples_create_video_get
-    method: GET
-    path: /examples/create-video
-    description: "Create Video Call Example"
-    source_operation: openapi/hourone-openapi-original.json#create_video_call_example_examples_create_video_get
-  - name: get_summary_analytics_summary_get
-    method: GET
-    path: /analytics/summary
-    description: "Get Summary"
-    source_operation: openapi/hourone-openapi-original.json#get_summary_analytics_summary_get
-  - name: get_keys_ids_keys_get
-    method: GET
-    path: /keys
-    description: "Get Keys Ids"
-    source_operation: openapi/hourone-openapi-original.json#get_keys_ids_keys_get
-  - name: generate_api_key_keys_post
-    method: POST
-    path: /keys
-    description: "Generate Api Key"
-    source_operation: openapi/hourone-openapi-original.json#generate_api_key_keys_post
-  - name: revoke_api_key_keys__key_id__delete
-    method: DELETE
-    path: /keys/{key_id}
-    description: "Revoke Api Key"
-    source_operation: openapi/hourone-openapi-original.json#revoke_api_key_keys__key_id__delete
-  - name: generate_playground_generate_post
-    method: POST
-    path: /playground/generate
-    description: "Generate"
-    source_operation: openapi/hourone-openapi-original.json#generate_playground_generate_post
-  - name: get_videos_playground_videos_get
-    method: GET
-    path: /playground/videos
-    description: "Get Videos"
-    source_operation: openapi/hourone-openapi-original.json#get_videos_playground_videos_get
-  - name: download_video_playground_videos__video_id__download_get
-    method: GET
-    path: /playground/videos/{video_id}/download
-    description: "Download Video"
-    source_operation: openapi/hourone-openapi-original.json#download_video_playground_videos__video_id__download_get
-  - name: share_video_playground_videos__video_id__share_put
-    method: PUT
-    path: /playground/videos/{video_id}/share
-    description: "Share Video"
-    source_operation: openapi/hourone-openapi-original.json#share_video_playground_videos__video_id__share_put
-  - name: get_webhooks_webhooks_get
-    method: GET
-    path: /webhooks
-    description: "Get Webhooks"
-    source_operation: openapi/hourone-openapi-original.json#get_webhooks_webhooks_get
-  - name: create_webhook_webhooks_post
-    method: POST
-    path: /webhooks
-    description: "Create Webhook"
-    source_operation: openapi/hourone-openapi-original.json#create_webhook_webhooks_post
-  - name: get_webhook_webhooks__webhook_id__get
-    method: GET
-    path: /webhooks/{webhook_id}
-    description: "Get Webhook"
-    source_operation: openapi/hourone-openapi-original.json#get_webhook_webhooks__webhook_id__get
-  - name: update_webhook_webhooks__webhook_id__put
-    method: PUT
-    path: /webhooks/{webhook_id}
-    description: "Update Webhook"
-    source_operation: openapi/hourone-openapi-original.json#update_webhook_webhooks__webhook_id__put
-  - name: delete_webhook_webhooks__webhook_id__delete
-    method: DELETE
-    path: /webhooks/{webhook_id}
-    description: "Delete Webhook"
-    source_operation: openapi/hourone-openapi-original.json#delete_webhook_webhooks__webhook_id__delete
-  - name: regenerate_webhook_secret_webhooks__webhook_id__secret_put
-    method: PUT
-    path: /webhooks/{webhook_id}/secret
-    description: "Regenerate Webhook Secret"
-    source_operation: openapi/hourone-openapi-original.json#regenerate_webhook_secret_webhooks__webhook_id__secret_put
-  - name: toggle_pause_state_webhooks__webhook_id__pause_put
-    method: PUT
-    path: /webhooks/{webhook_id}/pause
-    description: "Toggle Pause State"
-    source_operation: openapi/hourone-openapi-original.json#toggle_pause_state_webhooks__webhook_id__pause_put
-  - name: toggle_active_state_webhooks__webhook_id__toggle_status_put
-    method: PUT
-    path: /webhooks/{webhook_id}/toggle-status
-    description: "Toggle Active State"
-    source_operation: openapi/hourone-openapi-original.json#toggle_active_state_webhooks__webhook_id__toggle_status_put
+- name: list_videos_videos_get
+  method: GET
+  path: /videos
+  description: List Videos
+  source_operation: openapi/hourone-openapi-original.json#list_videos_videos_get
+- name: create_video_videos_post
+  method: POST
+  path: /videos
+  description: Create Video
+  source_operation: openapi/hourone-openapi-original.json#create_video_videos_post
+- name: get_video_by_id_videos__video_id__get
+  method: GET
+  path: /videos/{video_id}
+  description: Get Video By Id
+  source_operation: openapi/hourone-openapi-original.json#get_video_by_id_videos__video_id__get
+- name: delete_video_by_id_videos__video_id__delete
+  method: DELETE
+  path: /videos/{video_id}
+  description: Delete Video By Id
+  source_operation: openapi/hourone-openapi-original.json#delete_video_by_id_videos__video_id__delete
+- name: create_subtitles_videos__video_id__subtitles_post
+  method: POST
+  path: /videos/{video_id}/subtitles
+  description: Create Subtitles
+  source_operation: openapi/hourone-openapi-original.json#create_subtitles_videos__video_id__subtitles_post
+- name: get_video_metadata_videos__video_id__metadata_get
+  method: GET
+  path: /videos/{video_id}/metadata
+  description: Get Video Metadata
+  source_operation: openapi/hourone-openapi-original.json#get_video_metadata_videos__video_id__metadata_get
+- name: create_audio_preview_voice_preview_post
+  method: POST
+  path: /voice-preview
+  description: Create Audio Preview
+  source_operation: openapi/hourone-openapi-original.json#create_audio_preview_voice_preview_post
+- name: get_voice_preview_voice_preview__task_id__get
+  method: GET
+  path: /voice-preview/{task_id}
+  description: Get Voice Preview
+  source_operation: openapi/hourone-openapi-original.json#get_voice_preview_voice_preview__task_id__get
+- name: create_example_examples_post
+  method: POST
+  path: /examples
+  description: Create Example
+  source_operation: openapi/hourone-openapi-original.json#create_example_examples_post
+- name: create_video_call_example_examples_create_video_get
+  method: GET
+  path: /examples/create-video
+  description: Create Video Call Example
+  source_operation: openapi/hourone-openapi-original.json#create_video_call_example_examples_create_video_get
+- name: get_summary_analytics_summary_get
+  method: GET
+  path: /analytics/summary
+  description: Get Summary
+  source_operation: openapi/hourone-openapi-original.json#get_summary_analytics_summary_get
+- name: get_keys_ids_keys_get
+  method: GET
+  path: /keys
+  description: Get Keys Ids
+  source_operation: openapi/hourone-openapi-original.json#get_keys_ids_keys_get
+- name: generate_api_key_keys_post
+  method: POST
+  path: /keys
+  description: Generate Api Key
+  source_operation: openapi/hourone-openapi-original.json#generate_api_key_keys_post
+- name: revoke_api_key_keys__key_id__delete
+  method: DELETE
+  path: /keys/{key_id}
+  description: Revoke Api Key
+  source_operation: openapi/hourone-openapi-original.json#revoke_api_key_keys__key_id__delete
+- name: generate_playground_generate_post
+  method: POST
+  path: /playground/generate
+  description: Generate
+  source_operation: openapi/hourone-openapi-original.json#generate_playground_generate_post
+- name: get_videos_playground_videos_get
+  method: GET
+  path: /playground/videos
+  description: Get Videos
+  source_operation: openapi/hourone-openapi-original.json#get_videos_playground_videos_get
+- name: download_video_playground_videos__video_id__download_get
+  method: GET
+  path: /playground/videos/{video_id}/download
+  description: Download Video
+  source_operation: openapi/hourone-openapi-original.json#download_video_playground_videos__video_id__download_get
+- name: share_video_playground_videos__video_id__share_put
+  method: PUT
+  path: /playground/videos/{video_id}/share
+  description: Share Video
+  source_operation: openapi/hourone-openapi-original.json#share_video_playground_videos__video_id__share_put
+- name: get_webhooks_webhooks_get
+  method: GET
+  path: /webhooks
+  description: Get Webhooks
+  source_operation: openapi/hourone-openapi-original.json#get_webhooks_webhooks_get
+- name: create_webhook_webhooks_post
+  method: POST
+  path: /webhooks
+  description: Create Webhook
+  source_operation: openapi/hourone-openapi-original.json#create_webhook_webhooks_post
+- name: get_webhook_webhooks__webhook_id__get
+  method: GET
+  path: /webhooks/{webhook_id}
+  description: Get Webhook
+  source_operation: openapi/hourone-openapi-original.json#get_webhook_webhooks__webhook_id__get
+- name: update_webhook_webhooks__webhook_id__put
+  method: PUT
+  path: /webhooks/{webhook_id}
+  description: Update Webhook
+  source_operation: openapi/hourone-openapi-original.json#update_webhook_webhooks__webhook_id__put
+- name: delete_webhook_webhooks__webhook_id__delete
+  method: DELETE
+  path: /webhooks/{webhook_id}
+  description: Delete Webhook
+  source_operation: openapi/hourone-openapi-original.json#delete_webhook_webhooks__webhook_id__delete
+- name: regenerate_webhook_secret_webhooks__webhook_id__secret_put
+  method: PUT
+  path: /webhooks/{webhook_id}/secret
+  description: Regenerate Webhook Secret
+  source_operation: openapi/hourone-openapi-original.json#regenerate_webhook_secret_webhooks__webhook_id__secret_put
+- name: toggle_pause_state_webhooks__webhook_id__pause_put
+  method: PUT
+  path: /webhooks/{webhook_id}/pause
+  description: Toggle Pause State
+  source_operation: openapi/hourone-openapi-original.json#toggle_pause_state_webhooks__webhook_id__pause_put
+- name: toggle_active_state_webhooks__webhook_id__toggle_status_put
+  method: PUT
+  path: /webhooks/{webhook_id}/toggle-status
+  description: Toggle Active State
+  source_operation: openapi/hourone-openapi-original.json#toggle_active_state_webhooks__webhook_id__toggle_status_put
+deployment:
+  mode: none
+  verified: derived
+  tools: 26
+  checked: '2026-08-12'
+  source: catalog MCP census

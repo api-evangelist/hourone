@@ -1,0 +1,979 @@
+{
+  "item": [
+    {
+      "id": "08620e12-490f-46ef-9037-599fcb9d1e19",
+      "name": "videos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a65ad06-6573-4898-b436-1d9956a83c98",
+          "name": "List Videos",
+          "request": {
+            "name": "List Videos",
+            "description": {
+              "content": "Get videos",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd609a02-5792-41cb-ae23-77b5fcf40003",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"ready\",\n    \"req_id\": \"string\",\n    \"draft_id\": \"string\",\n    \"video_player_url\": \"string\",\n    \"name\": \"string\",\n    \"progress\": 0,\n    \"source_draft_id\": \"string\",\n    \"recipe_id\": \"string\",\n    \"template_id\": \"string\",\n    \"palette_id\": \"string\",\n    \"character_id\": \"string\",\n    \"voice_id\": \"string\",\n    \"scenes\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"override_scene\",\n        \"media\": [\n          \"string\",\n          \"string\"\n        ],\n        \"texts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"transcript\": \"string\",\n        \"voice_recording_url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"override_scene\",\n        \"media\": [\n          \"string\",\n          \"string\"\n        ],\n        \"texts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"transcript\": \"string\",\n        \"voice_recording_url\": \"string\"\n      }\n    ],\n    \"download_url\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"correlation_id\": \"string\",\n    \"palette\": [\n      {\n        \"color\": \"#e6640E\"\n      },\n      {\n        \"color\": \"#f03faB\"\n      }\n    ],\n    \"global_media_elements\": [\n      {\n        \"id\": \"string\",\n        \"url\": \"https://bZJqtsTAOBNvqiRpBkiVJOuvivGhN.zotcb6wt6VtQPwmS3\",\n        \"media_id\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"url\": \"http://Z.zozeMZPbt6sw0tm.a5dGtjLuLlL.zGmwrZepJ\",\n        \"media_id\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"started\",\n    \"req_id\": \"string\",\n    \"draft_id\": \"string\",\n    \"video_player_url\": \"string\",\n    \"name\": \"string\",\n    \"progress\": 0,\n    \"source_draft_id\": \"string\",\n    \"recipe_id\": \"string\",\n    \"template_id\": \"string\",\n    \"palette_id\": \"string\",\n    \"character_id\": \"string\",\n    \"voice_id\": \"string\",\n    \"scenes\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"override_scene\",\n        \"media\": [\n          \"string\",\n          \"string\"\n        ],\n        \"texts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"transcript\": \"string\",\n        \"voice_recording_url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"override_scene\",\n        \"media\": [\n          \"string\",\n          \"string\"\n        ],\n        \"texts\": [\n          \"string\",\n          \"string\"\n        ],\n        \"transcript\": \"string\",\n        \"voice_recording_url\": \"string\"\n      }\n    ],\n    \"download_url\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"correlation_id\": \"string\",\n    \"palette\": [\n      {\n        \"color\": \"E499bb\"\n      },\n      {\n        \"color\": \"FDe1CE\"\n      }\n    ],\n    \"global_media_elements\": [\n      {\n        \"id\": \"string\",\n        \"url\": \"https://ohSzPxMYvELGJGXmch.izlkYEjzBoz8n9UwN0JDlo80So5KaNB9KrCUhEFEdirs738qUYgXXvWXsUdwEaiU\",\n        \"media_id\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"url\": \"https://FKUFK.pvhZD+8wQO1Sy.kG,KnqxioK9hiZzXd-eTwfbC\",\n        \"media_id\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13d1341d-ad2f-4fb1-93b3-6115e36edcc4",
+          "name": "Create Video",
+          "request": {
+            "name": "Create Video",
+            "description": {
+              "content": "Create a video based on a source draft or a recipe_id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"scenes\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"texts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"transcript\": \"<string>\",\n      \"voice_recording_url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"texts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"transcript\": \"<string>\",\n      \"voice_recording_url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"source_draft_id\": \"<string>\",\n  \"recipe_id\": \"<string>\",\n  \"folder_id\": \"<string>\",\n  \"palette_id\": \"<string>\",\n  \"character_id\": \"<string>\",\n  \"voice_id\": \"<string>\",\n  \"logo_url\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"correlation_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e06e97a-ac17-4b02-bf8e-9c5fdadb0cb3",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"override\",\n  \"scenes\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"source_draft_id\": \"string\",\n  \"recipe_id\": \"string\",\n  \"folder_id\": \"string\",\n  \"palette_id\": \"string\",\n  \"character_id\": \"string\",\n  \"voice_id\": \"string\",\n  \"logo_url\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"correlation_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"started\",\n  \"req_id\": \"string\",\n  \"draft_id\": \"string\",\n  \"video_player_url\": \"string\",\n  \"name\": \"string\",\n  \"progress\": 0,\n  \"source_draft_id\": \"string\",\n  \"recipe_id\": \"string\",\n  \"template_id\": \"string\",\n  \"palette_id\": \"string\",\n  \"character_id\": \"string\",\n  \"voice_id\": \"string\",\n  \"scenes\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    }\n  ],\n  \"download_url\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"correlation_id\": \"string\",\n  \"palette\": [\n    {\n      \"color\": \"#e91aacBf\"\n    },\n    {\n      \"color\": \"19F1De\"\n    }\n  ],\n  \"global_media_elements\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://edJPcfOytkQWCGYcpqlcpXAj.lstid48qV0UL2yrQfLpsdYDPSYl\",\n      \"media_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://ETtMwaMTIQODGcDHcH.secsEz.WpSbRyV3he.9bZ-uhA1BdpaISRCHcW9q0\",\n      \"media_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24c8b698-5c74-461f-ae61-d31bed1ea132",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"override\",\n  \"scenes\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"source_draft_id\": \"string\",\n  \"recipe_id\": \"string\",\n  \"folder_id\": \"string\",\n  \"palette_id\": \"string\",\n  \"character_id\": \"string\",\n  \"voice_id\": \"string\",\n  \"logo_url\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"correlation_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06fdfa04-3200-4f98-9f52-b15de63fd110",
+          "name": "Get Video By Id",
+          "request": {
+            "name": "Get Video By Id",
+            "description": {
+              "content": "Get video by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos",
+                ":video_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a156f61-9042-4521-87da-40011da09e64",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"started\",\n  \"req_id\": \"string\",\n  \"draft_id\": \"string\",\n  \"video_player_url\": \"string\",\n  \"name\": \"string\",\n  \"progress\": 0,\n  \"source_draft_id\": \"string\",\n  \"recipe_id\": \"string\",\n  \"template_id\": \"string\",\n  \"palette_id\": \"string\",\n  \"character_id\": \"string\",\n  \"voice_id\": \"string\",\n  \"scenes\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"override_scene\",\n      \"media\": [\n        \"string\",\n        \"string\"\n      ],\n      \"texts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transcript\": \"string\",\n      \"voice_recording_url\": \"string\"\n    }\n  ],\n  \"download_url\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"correlation_id\": \"string\",\n  \"palette\": [\n    {\n      \"color\": \"#e91aacBf\"\n    },\n    {\n      \"color\": \"19F1De\"\n    }\n  ],\n  \"global_media_elements\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://edJPcfOytkQWCGYcpqlcpXAj.lstid48qV0UL2yrQfLpsdYDPSYl\",\n      \"media_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://ETtMwaMTIQODGcDHcH.secsEz.WpSbRyV3he.9bZ-uhA1BdpaISRCHcW9q0\",\n      \"media_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "083ffa17-93a7-489f-8a56-0c4bd2367aa9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42cca3fe-a78b-471b-aa33-b689e67e8b68",
+          "name": "Delete Video By Id",
+          "request": {
+            "name": "Delete Video By Id",
+            "description": {
+              "content": "Delete video by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos",
+                ":video_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c02279e7-1a53-4d5f-8416-d8322c057a38",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14e35c7c-22d2-4afe-a3e3-4a490d49e3c2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55dec4d0-cd36-4aeb-9f83-8d9e81fad1ba",
+          "name": "Create Subtitles",
+          "request": {
+            "name": "Create Subtitles",
+            "description": {
+              "content": "Create subtitles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos",
+                ":video_id",
+                "subtitles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"language_code\": \"<string>\",\n  \"format\": \"vtt\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc476cec-c7b2-4928-b9a0-cc8f5742081f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id",
+                    "subtitles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language_code\": \"hu\",\n  \"format\": \"vtt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"language_code\": \"zh\",\n  \"url\": \"string\",\n  \"format\": \"vtt\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "275d31d7-a5a2-471f-b7d1-3fb92b199ce3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id",
+                    "subtitles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language_code\": \"hu\",\n  \"format\": \"vtt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d79272d5-c549-4a9d-ae7f-30ab711dacad",
+          "name": "Get Video Metadata",
+          "request": {
+            "name": "Get Video Metadata",
+            "description": {
+              "content": "Get video by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "videos",
+                ":video_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "video_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "784180e8-4b83-47be-8c2b-35bca634b9c0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"duration\": 2510.3576698433403,\n  \"scenes_metadata\": [\n    {\n      \"scene_index\": 6382,\n      \"start_time\": 6437.415968677609,\n      \"duration\": 9486.244183314035\n    },\n    {\n      \"scene_index\": 2134,\n      \"start_time\": 8355.59904516054,\n      \"duration\": 6360.532186007\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cba4195d-61c9-442a-893f-32345ad39b97",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "videos",
+                    ":video_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "video_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6c567420-1395-41b8-b645-694cf303faa7",
+    "name": "sizzle-server general videos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

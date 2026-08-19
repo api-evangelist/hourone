@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sizzle-server general API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "general",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Example",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v1/examples",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "create examples"
+        },
+        {
+          "info": {
+            "name": "Create Video Call Example",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/examples/create-video",
+            "headers": [
+              {
+                "name": "workspace-id",
+                "value": ""
+              },
+              {
+                "name": "team-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "draft_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "example_type",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "get crate video call example"
+        },
+        {
+          "info": {
+            "name": "Get Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v1/analytics/summary",
+            "params": [
+              {
+                "name": "breakdown",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "correlation_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "get analytics summary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
