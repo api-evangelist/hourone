@@ -37,6 +37,17 @@ tags:
 - Video Generation
 - Generative AI
 - AI Avatars
+- Text-to-Speech
+- Media
+- Content Creation
+- Webhook
+tags_raw:
+- Company
+- Artificial Intelligence
+- Video
+- Video Generation
+- Generative AI
+- AI Avatars
 - Text to Speech
 - Media
 - Content Creation
@@ -52,7 +63,8 @@ apis:
   description: The general API from Hourone — 3 operation(s) for general.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - general
   properties:
   - type: OpenAPI
@@ -73,6 +85,8 @@ apis:
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
   tags:
+  - Keys
+  tags_raw:
   - keys
   properties:
   - type: OpenAPI
@@ -93,6 +107,8 @@ apis:
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
   tags:
+  - Playground
+  tags_raw:
   - playground
   properties:
   - type: OpenAPI
@@ -113,6 +129,8 @@ apis:
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
   tags:
+  - Videos
+  tags_raw:
   - videos
   properties:
   - type: OpenAPI
@@ -153,6 +171,8 @@ apis:
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
   tags:
+  - Webhook
+  tags_raw:
   - webhook
   properties:
   - type: OpenAPI
