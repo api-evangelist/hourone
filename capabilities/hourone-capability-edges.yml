@@ -1,0 +1,47 @@
+slug: hourone
+provider: Hourone
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: videos
+  spec_file: hourone-videos-api-openapi.yml
+  capability_id: BC-3700
+  capability_id_l1: BC-3700
+  capability_name: Content Origination & Production Management
+  confidence: 0.72
+  evidence: POST /videos 'Create Video'; POST /videos/{video_id}/subtitles 'Create Subtitles'; schemas
+    VideoScene, SceneTextAttribute, RequestPalette
+  reason: 'Core surface: programmatic creation of scene-based videos with presenters, plus subtitle generation
+    — origination/production of audiovisual content. Sub-capability is ambiguous (scene assembly vs. subtitling/versioning),
+    so L1 only.'
+- tag: keys
+  spec_file: hourone-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: POST /keys generate_api_key_keys_post 'Generate Api Key'; DELETE /keys/{key_id} 'Revoke Api
+    Key'
+  reason: Issuance and revocation of API credentials for developers consuming the platform's REST API
+    — developer identity & credential management. Could alternatively be read as generic IAM, hence not
+    maximal confidence.
+- tag: webhook
+  spec_file: hourone-webhook-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: POST /webhooks create_webhook; PUT /webhooks/{webhook_id}/secret 'Regenerate Webhook Secret';
+    schemas EventName, WebhookStatusOptions
+  reason: Full CRUD plus secret rotation and pause/activate over outbound event subscriptions — matches
+    webhook & event subscription lifecycle management. Otherwise this would be pure plumbing.

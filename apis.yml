@@ -200,6 +200,9 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 common:
+- type: CapabilityMap
+  url: capabilities/hourone-capability-edges.yml
+  name: Hourone Business Capability Map
 - type: Website
   url: https://hourone.ai/
 - type: DeveloperPortal
