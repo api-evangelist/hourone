@@ -141,7 +141,7 @@ apis:
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
   tags:
-  - Videos
+  - Video
   tags_raw:
   - videos
   properties:
