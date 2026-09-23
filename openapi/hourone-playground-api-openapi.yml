@@ -1,16 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: sizzle-server general playground API
+  title: sizzle-server Playground API
   version: 1.0.0
 servers:
 - url: /api/v1
 tags:
-- name: playground
+- name: Playground
 paths:
   /playground/generate:
     post:
       tags:
-      - playground
+      - Playground
       summary: Generate
       description: generate video
       operationId: generate_playground_generate_post
@@ -56,7 +56,7 @@ paths:
   /playground/videos:
     get:
       tags:
-      - playground
+      - Playground
       summary: Get Videos
       description: get videos
       operationId: get_videos_playground_videos_get
@@ -94,7 +94,7 @@ paths:
   /playground/videos/{video_id}/download:
     get:
       tags:
-      - playground
+      - Playground
       summary: Download Video
       description: download video
       operationId: download_video_playground_videos__video_id__download_get
@@ -135,7 +135,7 @@ paths:
   /playground/videos/{video_id}/share:
     put:
       tags:
-      - playground
+      - Playground
       summary: Share Video
       description: share video
       operationId: share_video_playground_videos__video_id__share_put
@@ -183,44 +183,6 @@ components:
       required:
       - status
       title: PlaygroundDownloadResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    RealsPlatform:
-      type: string
-      enum:
-      - mobile
-      - reals
-      - reals_api
-      title: RealsPlatform
-      description: An enumeration.
     PlaygroundResponse:
       properties:
         id:
@@ -301,6 +263,44 @@ components:
           title: Order Id
       type: object
       title: PlaygroundRequest
+    RealsPlatform:
+      type: string
+      enum:
+      - mobile
+      - reals
+      - reals_api
+      title: RealsPlatform
+      description: An enumeration.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

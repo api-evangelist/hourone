@@ -1,12 +1,7 @@
 {
   "provider": "hourone",
   "sources": [
-    "hourone-general-api-openapi.yml",
-    "hourone-keys-api-openapi.yml",
-    "hourone-playground-api-openapi.yml",
-    "hourone-videos-api-openapi.yml",
-    "hourone-voice-preview-api-openapi.yml",
-    "hourone-webhook-api-openapi.yml"
+    "_original/hourone-openapi-original.json"
   ],
   "outputs": [
     "hourone-general-api-openapi.yml",
@@ -19,6 +14,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hourone-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "hourone-openapi-original.json: declared missing tag: general",
+    "hourone-openapi-original.json: declared missing tag: keys",
+    "hourone-openapi-original.json: declared missing tag: playground",
+    "hourone-openapi-original.json: declared missing tag: videos",
+    "hourone-openapi-original.json: declared missing tag: voice-preview",
+    "hourone-openapi-original.json: declared missing tag: webhook",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/hourone-openapi.json: archived document superseded by a larger archived document",
+    "hourone-general-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hourone-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hourone-playground-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hourone-videos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hourone-voice-preview-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hourone-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
