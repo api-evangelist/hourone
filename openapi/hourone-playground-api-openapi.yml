@@ -171,18 +171,35 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
-    PlaygroundDownloadResponse:
+    RealsPlatform:
+      type: string
+      enum:
+      - mobile
+      - reals
+      - reals_api
+      title: RealsPlatform
+      description: An enumeration.
+    ValidationError:
       properties:
-        url:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Url
-        status:
+          title: Message
+        type:
           type: string
-          title: Status
+          title: Error Type
       type: object
       required:
-      - status
-      title: PlaygroundDownloadResponse
+      - loc
+      - msg
+      - type
+      title: ValidationError
     PlaygroundResponse:
       properties:
         id:
@@ -263,14 +280,18 @@ components:
           title: Order Id
       type: object
       title: PlaygroundRequest
-    RealsPlatform:
-      type: string
-      enum:
-      - mobile
-      - reals
-      - reals_api
-      title: RealsPlatform
-      description: An enumeration.
+    PlaygroundDownloadResponse:
+      properties:
+        url:
+          type: string
+          title: Url
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - status
+      title: PlaygroundDownloadResponse
     HTTPValidationError:
       properties:
         detail:
@@ -280,27 +301,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

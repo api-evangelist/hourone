@@ -65,6 +65,46 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TaskProgressResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        req_id:
+          type: string
+          title: Req Id
+        status:
+          $ref: '#/components/schemas/StatusTypes'
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - id
+      - req_id
+      - status
+      title: TaskProgressResponse
     StatusTypes:
       type: string
       enum:
@@ -73,19 +113,6 @@ components:
       - failed
       title: StatusTypes
       description: An enumeration.
-    VoicePreviewRequest:
-      properties:
-        transcript:
-          type: string
-          title: Transcript
-        source_draft_id:
-          type: string
-          title: Source Draft Id
-      type: object
-      required:
-      - transcript
-      - source_draft_id
-      title: VoicePreviewRequest
     CreateVoicePreviewResponse:
       properties:
         id:
@@ -111,25 +138,19 @@ components:
       - voice_id
       - req_id
       title: CreateVoicePreviewResponse
-    TaskProgressResponse:
+    VoicePreviewRequest:
       properties:
-        id:
+        transcript:
           type: string
-          title: Id
-        req_id:
+          title: Transcript
+        source_draft_id:
           type: string
-          title: Req Id
-        status:
-          $ref: '#/components/schemas/StatusTypes'
-        url:
-          type: string
-          title: Url
+          title: Source Draft Id
       type: object
       required:
-      - id
-      - req_id
-      - status
-      title: TaskProgressResponse
+      - transcript
+      - source_draft_id
+      title: VoicePreviewRequest
     HTTPValidationError:
       properties:
         detail:
@@ -139,27 +160,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

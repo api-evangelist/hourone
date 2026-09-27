@@ -172,23 +172,28 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
-    SceneMetadataResponse:
+    SubtitlesFileExtension:
+      type: string
+      enum:
+      - vtt
+      - srt
+      title: SubtitlesFileExtension
+      description: An enumeration.
+    VideoMetadataResponse:
       properties:
-        scene_index:
-          type: integer
-          title: Scene Index
-        start_time:
-          type: number
-          title: Start Time
         duration:
           type: number
           title: Duration
+        scenes_metadata:
+          items:
+            $ref: '#/components/schemas/SceneMetadataResponse'
+          type: array
+          title: Scenes Metadata
       type: object
       required:
-      - scene_index
-      - start_time
       - duration
-      title: SceneMetadataResponse
+      - scenes_metadata
+      title: VideoMetadataResponse
     WorkflowVideoRequest:
       properties:
         type:
@@ -226,15 +231,6 @@ components:
       - workflow_id
       - variables
       title: WorkflowVideoRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     OverrideVideoRequest:
       properties:
         type:
@@ -299,13 +295,6 @@ components:
       - type
       - scenes
       title: OverrideVideoRequest
-    SubtitlesFileExtension:
-      type: string
-      enum:
-      - vtt
-      - srt
-      title: SubtitlesFileExtension
-      description: An enumeration.
     VideoStatusEnum:
       type: string
       enum:
@@ -342,18 +331,118 @@ components:
       - ar
       title: SupportedTranslationSubtitlesLanguagesCode
       description: An enumeration.
-    SceneTextAttribute:
+    ValidationError:
       properties:
-        id:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Id
-        text:
+          title: Message
+        type:
           type: string
-          title: Text
+          title: Error Type
       type: object
       required:
-      - text
-      title: SceneTextAttribute
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    InitiatorVideoRequest:
+      oneOf:
+      - $ref: '#/components/schemas/OverrideVideoRequest'
+      - $ref: '#/components/schemas/NewVideoRequest'
+      - $ref: '#/components/schemas/WorkflowVideoRequest'
+      title: InitiatorVideoRequest
+      discriminator:
+        propertyName: type
+        mapping:
+          override: '#/components/schemas/OverrideVideoRequest'
+          create: '#/components/schemas/NewVideoRequest'
+          workflow: '#/components/schemas/WorkflowVideoRequest'
+    RequestPalette:
+      properties:
+        color:
+          type: string
+          pattern: ^#?(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})$
+          title: Color
+      type: object
+      required:
+      - color
+      title: RequestPalette
+    VariableMapping:
+      properties:
+        name:
+          type: string
+          title: Name
+        variable_id:
+          type: string
+          title: Variable Id
+        value:
+          type: string
+          title: Value
+      type: object
+      required:
+      - value
+      title: VariableMapping
+    VideoScene:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: The name of this scene.
+        type:
+          type: string
+          enum:
+          - override_scene
+          title: Type
+          default: override_scene
+        media:
+          items:
+            type: string
+          type: array
+          title: Media
+          description: This array will contain image/video urls which will be used as this scenes media attributes such as background images and videos. If the number of media assets in this array exceeds the current layouts amount of assets, the extra assets will be dismissed. If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen
+        texts:
+          items:
+            type: string
+          type: array
+          title: Texts
+          description: 'This array will contain text values which will be used as this scenes text attributes such as titles. If the number of text assets in this array exceeds the current layouts amount of text assets, the extra assets will be dismissed.If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen '
+        transcript:
+          type: string
+          maxLength: 1000
+          title: Transcript
+          description: This scenes transcript. must contain less than 500 characters
+        voice_recording_url:
+          type: string
+          title: Voice Recording Url
+          description: This scenes voice recording url.
+      type: object
+      required:
+      - name
+      title: VideoScene
+    SceneMetadataResponse:
+      properties:
+        scene_index:
+          type: integer
+          title: Scene Index
+        start_time:
+          type: number
+          title: Start Time
+        duration:
+          type: number
+          title: Duration
+      type: object
+      required:
+      - scene_index
+      - start_time
+      - duration
+      title: SceneMetadataResponse
     NewVideoRequest:
       properties:
         type:
@@ -425,118 +514,6 @@ components:
       - voice_id
       - scenes
       title: NewVideoRequest
-    NewVideoScene:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The name of this scene.
-        type:
-          type: string
-          enum:
-          - create_scene
-          title: Type
-          default: create_scene
-        layout_id:
-          type: string
-          title: Layout Id
-          description: The layout on the video
-        media_elements:
-          items:
-            $ref: '#/components/schemas/SceneMediaAttribute'
-          type: array
-          title: Media Elements
-          description: This array will contain image/video urls which will be used as this scenes media attributes such as background images and videos. If the number of media assets in this array exceeds the current layouts amount of assets, the extra assets will be dismissed. If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen
-        texts_elements:
-          items:
-            $ref: '#/components/schemas/SceneTextAttribute'
-          type: array
-          title: Texts Elements
-          description: 'This array will contain text values which will be used as this scenes text attributes such as titles. If the number of text assets in this array exceeds the current layouts amount of text assets, the extra assets will be dismissed.If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen '
-        transcript:
-          type: string
-          maxLength: 1000
-          title: Transcript
-          description: This scenes transcript. must contain less than 500 characters
-        voice_recording_url:
-          type: string
-          title: Voice Recording Url
-          description: This scenes voice recording url.
-      type: object
-      required:
-      - name
-      - layout_id
-      title: NewVideoScene
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    VideoScene:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: The name of this scene.
-        type:
-          type: string
-          enum:
-          - override_scene
-          title: Type
-          default: override_scene
-        media:
-          items:
-            type: string
-          type: array
-          title: Media
-          description: This array will contain image/video urls which will be used as this scenes media attributes such as background images and videos. If the number of media assets in this array exceeds the current layouts amount of assets, the extra assets will be dismissed. If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen
-        texts:
-          items:
-            type: string
-          type: array
-          title: Texts
-          description: 'This array will contain text values which will be used as this scenes text attributes such as titles. If the number of text assets in this array exceeds the current layouts amount of text assets, the extra assets will be dismissed.If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen '
-        transcript:
-          type: string
-          maxLength: 1000
-          title: Transcript
-          description: This scenes transcript. must contain less than 500 characters
-        voice_recording_url:
-          type: string
-          title: Voice Recording Url
-          description: This scenes voice recording url.
-      type: object
-      required:
-      - name
-      title: VideoScene
-    InitiatorVideoRequest:
-      oneOf:
-      - $ref: '#/components/schemas/OverrideVideoRequest'
-      - $ref: '#/components/schemas/NewVideoRequest'
-      - $ref: '#/components/schemas/WorkflowVideoRequest'
-      title: InitiatorVideoRequest
-      discriminator:
-        propertyName: type
-        mapping:
-          override: '#/components/schemas/OverrideVideoRequest'
-          create: '#/components/schemas/NewVideoRequest'
-          workflow: '#/components/schemas/WorkflowVideoRequest'
     SceneMediaAttribute:
       properties:
         id:
@@ -553,21 +530,6 @@ components:
           title: Media Id
       type: object
       title: SceneMediaAttribute
-    VariableMapping:
-      properties:
-        name:
-          type: string
-          title: Name
-        variable_id:
-          type: string
-          title: Variable Id
-        value:
-          type: string
-          title: Value
-      type: object
-      required:
-      - value
-      title: VariableMapping
     SubtitlesApiResponse:
       properties:
         language_code:
@@ -584,31 +546,30 @@ components:
       - language_code
       - url
       title: SubtitlesApiResponse
-    RequestPalette:
+    SubtitlesApiRequest:
       properties:
-        color:
+        language_code:
+          $ref: '#/components/schemas/SupportedTranslationSubtitlesLanguagesCode'
+        format:
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesFileExtension'
+          default: vtt
+      type: object
+      required:
+      - language_code
+      title: SubtitlesApiRequest
+    SceneTextAttribute:
+      properties:
+        id:
           type: string
-          pattern: ^#?(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})$
-          title: Color
+          title: Id
+        text:
+          type: string
+          title: Text
       type: object
       required:
-      - color
-      title: RequestPalette
-    VideoMetadataResponse:
-      properties:
-        duration:
-          type: number
-          title: Duration
-        scenes_metadata:
-          items:
-            $ref: '#/components/schemas/SceneMetadataResponse'
-          type: array
-          title: Scenes Metadata
-      type: object
-      required:
-      - duration
-      - scenes_metadata
-      title: VideoMetadataResponse
+      - text
+      title: SceneTextAttribute
     VideoResponse:
       properties:
         id:
@@ -702,18 +663,57 @@ components:
       - draft_id
       - video_player_url
       title: VideoResponse
-    SubtitlesApiRequest:
+    NewVideoScene:
       properties:
-        language_code:
-          $ref: '#/components/schemas/SupportedTranslationSubtitlesLanguagesCode'
-        format:
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesFileExtension'
-          default: vtt
+        name:
+          type: string
+          title: Name
+          description: The name of this scene.
+        type:
+          type: string
+          enum:
+          - create_scene
+          title: Type
+          default: create_scene
+        layout_id:
+          type: string
+          title: Layout Id
+          description: The layout on the video
+        media_elements:
+          items:
+            $ref: '#/components/schemas/SceneMediaAttribute'
+          type: array
+          title: Media Elements
+          description: This array will contain image/video urls which will be used as this scenes media attributes such as background images and videos. If the number of media assets in this array exceeds the current layouts amount of assets, the extra assets will be dismissed. If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen
+        texts_elements:
+          items:
+            $ref: '#/components/schemas/SceneTextAttribute'
+          type: array
+          title: Texts Elements
+          description: 'This array will contain text values which will be used as this scenes text attributes such as titles. If the number of text assets in this array exceeds the current layouts amount of text assets, the extra assets will be dismissed.If the number of media assets provided in this array is smaller then the amount of assets the layout supports, the base projects default values will be chosen '
+        transcript:
+          type: string
+          maxLength: 1000
+          title: Transcript
+          description: This scenes transcript. must contain less than 500 characters
+        voice_recording_url:
+          type: string
+          title: Voice Recording Url
+          description: This scenes voice recording url.
       type: object
       required:
-      - language_code
-      title: SubtitlesApiRequest
+      - name
+      - layout_id
+      title: NewVideoScene
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

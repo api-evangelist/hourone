@@ -71,7 +71,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: hourone:hourone-general-api
-  name: Hourone general API
+  name: Hourone General API
   description: The general API from Hourone — 3 operation(s) for general.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
@@ -92,7 +92,7 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 - aid: hourone:hourone-keys-api
-  name: Hourone keys API
+  name: Hourone Keys API
   description: The keys API from Hourone — 2 operation(s) for keys.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
@@ -114,7 +114,7 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 - aid: hourone:hourone-playground-api
-  name: Hourone playground API
+  name: Hourone Playground API
   description: The playground API from Hourone — 4 operation(s) for playground.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
@@ -136,7 +136,7 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 - aid: hourone:hourone-videos-api
-  name: Hourone videos API
+  name: Hourone Videos API
   description: The videos API from Hourone — 4 operation(s) for videos.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
@@ -158,7 +158,7 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 - aid: hourone:hourone-voice-preview-api
-  name: Hourone voice-preview API
+  name: Hourone Voice Preview API
   description: The voice-preview API from Hourone — 2 operation(s) for voice-preview.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1
@@ -178,7 +178,7 @@ apis:
   - type: Webhooks
     url: asyncapi/hourone-webhooks.yml
 - aid: hourone:hourone-webhook-api
-  name: Hourone webhook API
+  name: Hourone Webhook API
   description: The webhook API from Hourone — 5 operation(s) for webhook.
   humanURL: https://hourone.gitbook.io/api-docs
   baseURL: https://api.makereals.com/api/v1

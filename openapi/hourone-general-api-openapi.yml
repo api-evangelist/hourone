@@ -165,27 +165,6 @@ components:
       required:
       - type
       title: CreateExampleRequest
-    ExampleResponse:
-      properties:
-        curl:
-          type: string
-          title: Curl
-        json_request:
-          type: object
-          title: Json Request
-      type: object
-      required:
-      - curl
-      - json_request
-      title: ExampleResponse
-    UsageBreakdown:
-      type: string
-      enum:
-      - daily
-      - weekly
-      - monthly
-      title: UsageBreakdown
-      description: An enumeration.
     UsageResponse:
       properties:
         day:
@@ -219,15 +198,6 @@ components:
       - create_video_from_workflow
       title: ExampleTypes
       description: An enumeration.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -249,6 +219,36 @@ components:
       - msg
       - type
       title: ValidationError
+    ExampleResponse:
+      properties:
+        curl:
+          type: string
+          title: Curl
+        json_request:
+          type: object
+          title: Json Request
+      type: object
+      required:
+      - curl
+      - json_request
+      title: ExampleResponse
+    UsageBreakdown:
+      type: string
+      enum:
+      - daily
+      - weekly
+      - monthly
+      title: UsageBreakdown
+      description: An enumeration.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey
