@@ -229,6 +229,38 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
+    UpdateWebhookRequest:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        events:
+          items:
+            $ref: '#/components/schemas/EventName'
+          type: array
+      type: object
+      required:
+      - name
+      - url
+      title: UpdateWebhookRequest
+    WebhookStatusOptions:
+      type: string
+      enum:
+      - active
+      - inactive
+      - paused
+      - pending
+      title: WebhookStatusOptions
+      description: An enumeration.
     ValidationError:
       properties:
         loc:
@@ -250,6 +282,39 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    WebhookRequest:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        events:
+          items:
+            $ref: '#/components/schemas/EventName'
+          type: array
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+      type: object
+      required:
+      - name
+      - events
+      - url
+      title: WebhookRequest
     WebhookResponse:
       properties:
         id:
@@ -295,71 +360,6 @@ components:
       - video.failed
       title: EventName
       description: An enumeration.
-    WebhookStatusOptions:
-      type: string
-      enum:
-      - active
-      - inactive
-      - paused
-      - pending
-      title: WebhookStatusOptions
-      description: An enumeration.
-    WebhookRequest:
-      properties:
-        name:
-          type: string
-          title: Name
-        description:
-          type: string
-          title: Description
-        events:
-          items:
-            $ref: '#/components/schemas/EventName'
-          type: array
-        url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Url
-      type: object
-      required:
-      - name
-      - events
-      - url
-      title: WebhookRequest
-    UpdateWebhookRequest:
-      properties:
-        name:
-          type: string
-          title: Name
-        description:
-          type: string
-          title: Description
-        url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Url
-        events:
-          items:
-            $ref: '#/components/schemas/EventName'
-          type: array
-      type: object
-      required:
-      - name
-      - url
-      title: UpdateWebhookRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

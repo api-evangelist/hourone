@@ -151,20 +151,14 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
-    CreateExampleRequest:
-      properties:
-        type:
-          $ref: '#/components/schemas/ExampleTypes'
-        draft_id:
-          type: string
-          title: Draft Id
-        workflow_id:
-          type: string
-          title: Workflow Id
-      type: object
-      required:
-      - type
-      title: CreateExampleRequest
+    ExampleTypes:
+      type: string
+      enum:
+      - create
+      - override
+      - create_video_from_workflow
+      title: ExampleTypes
+      description: An enumeration.
     UsageResponse:
       properties:
         day:
@@ -190,14 +184,20 @@ components:
       - videos_created
       - total_duration
       title: UsageResponse
-    ExampleTypes:
-      type: string
-      enum:
-      - create
-      - override
-      - create_video_from_workflow
-      title: ExampleTypes
-      description: An enumeration.
+    CreateExampleRequest:
+      properties:
+        type:
+          $ref: '#/components/schemas/ExampleTypes'
+        draft_id:
+          type: string
+          title: Draft Id
+        workflow_id:
+          type: string
+          title: Workflow Id
+      type: object
+      required:
+      - type
+      title: CreateExampleRequest
     ValidationError:
       properties:
         loc:
@@ -232,14 +232,6 @@ components:
       - curl
       - json_request
       title: ExampleResponse
-    UsageBreakdown:
-      type: string
-      enum:
-      - daily
-      - weekly
-      - monthly
-      title: UsageBreakdown
-      description: An enumeration.
     HTTPValidationError:
       properties:
         detail:
@@ -249,6 +241,14 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    UsageBreakdown:
+      type: string
+      enum:
+      - daily
+      - weekly
+      - monthly
+      title: UsageBreakdown
+      description: An enumeration.
   securitySchemes:
     APIKeyHeader:
       type: apiKey
