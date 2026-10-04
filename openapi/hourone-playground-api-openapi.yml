@@ -171,6 +171,56 @@ paths:
       - HTTPBearer: []
 components:
   schemas:
+    PlaygroundDownloadResponse:
+      properties:
+        url:
+          type: string
+          title: Url
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - status
+      title: PlaygroundDownloadResponse
+    RealsPlatform:
+      type: string
+      enum:
+      - mobile
+      - reals
+      - reals_api
+      title: RealsPlatform
+      description: An enumeration.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     PlaygroundResponse:
       properties:
         id:
@@ -220,48 +270,6 @@ components:
           title: Progress
       type: object
       title: PlaygroundResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    PlaygroundDownloadResponse:
-      properties:
-        url:
-          type: string
-          title: Url
-        status:
-          type: string
-          title: Status
-      type: object
-      required:
-      - status
-      title: PlaygroundDownloadResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     PlaygroundRequest:
       properties:
         title:
@@ -293,14 +301,6 @@ components:
           title: Order Id
       type: object
       title: PlaygroundRequest
-    RealsPlatform:
-      type: string
-      enum:
-      - mobile
-      - reals
-      - reals_api
-      title: RealsPlatform
-      description: An enumeration.
   securitySchemes:
     APIKeyHeader:
       type: apiKey

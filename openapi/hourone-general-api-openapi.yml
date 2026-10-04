@@ -184,20 +184,6 @@ components:
       - videos_created
       - total_duration
       title: UsageResponse
-    CreateExampleRequest:
-      properties:
-        type:
-          $ref: '#/components/schemas/ExampleTypes'
-        draft_id:
-          type: string
-          title: Draft Id
-        workflow_id:
-          type: string
-          title: Workflow Id
-      type: object
-      required:
-      - type
-      title: CreateExampleRequest
     ValidationError:
       properties:
         loc:
@@ -219,6 +205,20 @@ components:
       - msg
       - type
       title: ValidationError
+    CreateExampleRequest:
+      properties:
+        type:
+          $ref: '#/components/schemas/ExampleTypes'
+        draft_id:
+          type: string
+          title: Draft Id
+        workflow_id:
+          type: string
+          title: Workflow Id
+      type: object
+      required:
+      - type
+      title: CreateExampleRequest
     ExampleResponse:
       properties:
         curl:

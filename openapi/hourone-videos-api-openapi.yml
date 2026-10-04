@@ -172,93 +172,21 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
-    NewVideoRequest:
+    VideoMetadataResponse:
       properties:
-        type:
-          type: string
-          enum:
-          - create
-          title: Type
-        name:
-          type: string
-          title: Name
-          description: The name of the project created by this request
-        template_id:
-          type: string
-          title: Template Id
-          description: The id of the recipe your video will be based on.
-        folder_id:
-          type: string
-          title: Folder Id
-          description: The id of the folder your video will be based on.
-        palette_id:
-          type: string
-          title: Palette Id
-          description: The palette_id of a color-palette you would like to use instead of the source project one. if no value is given, the source projects color-palette will be used.
-        character_id:
-          type: string
-          title: Character Id
-          description: The character_id of a character you would like to use instead of the source projects one. if no value is given, the source projects character will be used.
-        voice_id:
-          type: string
-          title: Voice Id
-          description: The id of a voice you would like to use instead of the source projects one. if no value is given, the source projects voice will be used.
-        scenes:
+        duration:
+          type: number
+          title: Duration
+        scenes_metadata:
           items:
-            $ref: '#/components/schemas/NewVideoScene'
+            $ref: '#/components/schemas/SceneMetadataResponse'
           type: array
-          minItems: 1
-          title: Scenes
-          description: 'Each object in this array will represent a scene in the final video. the video will be generated based on this arrays order (the first object in this array will represent the first scene in the video etc.). The length of this array must be equal to the number of the source projects scenes. '
-        global_media_elements:
-          items:
-            $ref: '#/components/schemas/SceneMediaAttribute'
-          type: array
-          title: Global Media Elements
-          description: The array will contain global media values of the video
-        palette:
-          items:
-            $ref: '#/components/schemas/RequestPalette'
-          type: array
-          title: Palette
-        metadata:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - type: integer
-            - type: boolean
-          type: object
-          title: Metadata
-          description: request metadata
-        correlation_id:
-          type: string
-          maxLength: 100
-          title: Correlation Id
-          description: request correlation id
+          title: Scenes Metadata
       type: object
       required:
-      - type
-      - template_id
-      - character_id
-      - voice_id
-      - scenes
-      title: NewVideoRequest
-    SceneMediaAttribute:
-      properties:
-        id:
-          type: string
-          title: Id
-        url:
-          type: string
-          maxLength: 2083
-          minLength: 1
-          format: uri
-          title: Url
-        media_id:
-          type: string
-          title: Media Id
-      type: object
-      title: SceneMediaAttribute
+      - duration
+      - scenes_metadata
+      title: VideoMetadataResponse
     VideoScene:
       properties:
         name:
@@ -338,92 +266,22 @@ components:
       - name
       - layout_id
       title: NewVideoScene
-    WorkflowVideoRequest:
+    SubtitlesApiResponse:
       properties:
-        type:
+        language_code:
+          $ref: '#/components/schemas/SupportedTranslationSubtitlesLanguagesCode'
+        format:
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesFileExtension'
+          default: vtt
+        url:
           type: string
-          enum:
-          - workflow
-          title: Type
-        workflow_id:
-          type: string
-          title: Workflow Id
-          description: The id of the workflow your video will be based on.
-        variables:
-          items:
-            $ref: '#/components/schemas/VariableMapping'
-          type: array
-          title: Variables
-          description: The variables of the workflow
-        correlation_id:
-          type: string
-          maxLength: 100
-          title: Correlation Id
-          description: request correlation id
-        metadata:
-          additionalProperties:
-            anyOf:
-            - type: string
-            - type: integer
-            - type: boolean
-          type: object
-          title: Metadata
-          description: request metadata
+          title: Url
       type: object
       required:
-      - type
-      - workflow_id
-      - variables
-      title: WorkflowVideoRequest
-    SceneMetadataResponse:
-      properties:
-        scene_index:
-          type: integer
-          title: Scene Index
-        start_time:
-          type: number
-          title: Start Time
-        duration:
-          type: number
-          title: Duration
-      type: object
-      required:
-      - scene_index
-      - start_time
-      - duration
-      title: SceneMetadataResponse
-    SupportedTranslationSubtitlesLanguagesCode:
-      type: string
-      enum:
-      - en
-      - es
-      - de
-      - pt
-      - it
-      - fr
-      - nl
-      - ja
-      - tr
-      - pl
-      - hu
-      - cz
-      - he
-      - zh
-      - hi
-      - ru
-      - ko
-      - ar
-      title: SupportedTranslationSubtitlesLanguagesCode
-      description: An enumeration.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      - language_code
+      - url
+      title: SubtitlesApiResponse
     InitiatorVideoRequest:
       oneOf:
       - $ref: '#/components/schemas/OverrideVideoRequest'
@@ -436,93 +294,27 @@ components:
           override: '#/components/schemas/OverrideVideoRequest'
           create: '#/components/schemas/NewVideoRequest'
           workflow: '#/components/schemas/WorkflowVideoRequest'
-    RequestPalette:
+    ValidationError:
       properties:
-        color:
-          type: string
-          pattern: ^#?(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})$
-          title: Color
-      type: object
-      required:
-      - color
-      title: RequestPalette
-    VideoStatusEnum:
-      type: string
-      enum:
-      - started
-      - processing
-      - ready
-      - published
-      - failed
-      - not_started
-      - stopped
-      - cancelled
-      title: VideoStatusEnum
-      description: An enumeration.
-    OverrideVideoRequest:
-      properties:
-        type:
-          type: string
-          enum:
-          - override
-          title: Type
-        name:
-          type: string
-          title: Name
-          description: The name of the project created by this request
-        source_draft_id:
-          type: string
-          title: Source Draft Id
-          description: The id of the project your video will be based on.
-        recipe_id:
-          type: string
-          title: Recipe Id
-          description: The id of the recipe your video will be based on.
-        folder_id:
-          type: string
-          title: Folder Id
-          description: The id of the folder your video will be based on.
-        palette_id:
-          type: string
-          title: Palette Id
-          description: The palette_id of a color-palette you would like to use instead of the source project one. if no value is given, the source projects color-palette will be used.
-        character_id:
-          type: string
-          title: Character Id
-          description: The character_id of a character you would like to use instead of the source projects one. if no value is given, the source projects character will be used.
-        voice_id:
-          type: string
-          title: Voice Id
-          description: The id of a voice you would like to use instead of the source projects one. if no value is given, the source projects voice will be used.
-        scenes:
+        loc:
           items:
-            $ref: '#/components/schemas/VideoScene'
-          type: array
-          title: Scenes
-          description: 'Each object in this array will represent a scene in the final video. the video will be generated based on this arrays order (the first object in this array will represent the first scene in the video etc.). The length of this array must be equal to the number of the source projects scenes. '
-        logo_url:
-          type: string
-          title: Logo Url
-          description: The url of the logo you would like to use instead of the source projects one. if no value is given, the source projects logo will be used.
-        metadata:
-          additionalProperties:
             anyOf:
             - type: string
             - type: integer
-            - type: boolean
-          type: object
-          title: Metadata
-          description: request metadata
-        correlation_id:
+          type: array
+          title: Location
+        msg:
           type: string
-          maxLength: 100
-          title: Correlation Id
-          description: request correlation id
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
+      - loc
+      - msg
       - type
-      - scenes
-      title: OverrideVideoRequest
+      title: ValidationError
     VideoResponse:
       properties:
         id:
@@ -616,42 +408,207 @@ components:
       - draft_id
       - video_player_url
       title: VideoResponse
-    ValidationError:
+    WorkflowVideoRequest:
       properties:
-        loc:
+        type:
+          type: string
+          enum:
+          - workflow
+          title: Type
+        workflow_id:
+          type: string
+          title: Workflow Id
+          description: The id of the workflow your video will be based on.
+        variables:
           items:
+            $ref: '#/components/schemas/VariableMapping'
+          type: array
+          title: Variables
+          description: The variables of the workflow
+        correlation_id:
+          type: string
+          maxLength: 100
+          title: Correlation Id
+          description: request correlation id
+        metadata:
+          additionalProperties:
             anyOf:
             - type: string
             - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+            - type: boolean
+          type: object
+          title: Metadata
+          description: request metadata
       type: object
       required:
-      - loc
-      - msg
       - type
-      title: ValidationError
-    VideoMetadataResponse:
+      - workflow_id
+      - variables
+      title: WorkflowVideoRequest
+    HTTPValidationError:
       properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SceneTextAttribute:
+      properties:
+        id:
+          type: string
+          title: Id
+        text:
+          type: string
+          title: Text
+      type: object
+      required:
+      - text
+      title: SceneTextAttribute
+    SceneMediaAttribute:
+      properties:
+        id:
+          type: string
+          title: Id
+        url:
+          type: string
+          maxLength: 2083
+          minLength: 1
+          format: uri
+          title: Url
+        media_id:
+          type: string
+          title: Media Id
+      type: object
+      title: SceneMediaAttribute
+    RequestPalette:
+      properties:
+        color:
+          type: string
+          pattern: ^#?(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})$
+          title: Color
+      type: object
+      required:
+      - color
+      title: RequestPalette
+    OverrideVideoRequest:
+      properties:
+        type:
+          type: string
+          enum:
+          - override
+          title: Type
+        name:
+          type: string
+          title: Name
+          description: The name of the project created by this request
+        source_draft_id:
+          type: string
+          title: Source Draft Id
+          description: The id of the project your video will be based on.
+        recipe_id:
+          type: string
+          title: Recipe Id
+          description: The id of the recipe your video will be based on.
+        folder_id:
+          type: string
+          title: Folder Id
+          description: The id of the folder your video will be based on.
+        palette_id:
+          type: string
+          title: Palette Id
+          description: The palette_id of a color-palette you would like to use instead of the source project one. if no value is given, the source projects color-palette will be used.
+        character_id:
+          type: string
+          title: Character Id
+          description: The character_id of a character you would like to use instead of the source projects one. if no value is given, the source projects character will be used.
+        voice_id:
+          type: string
+          title: Voice Id
+          description: The id of a voice you would like to use instead of the source projects one. if no value is given, the source projects voice will be used.
+        scenes:
+          items:
+            $ref: '#/components/schemas/VideoScene'
+          type: array
+          title: Scenes
+          description: 'Each object in this array will represent a scene in the final video. the video will be generated based on this arrays order (the first object in this array will represent the first scene in the video etc.). The length of this array must be equal to the number of the source projects scenes. '
+        logo_url:
+          type: string
+          title: Logo Url
+          description: The url of the logo you would like to use instead of the source projects one. if no value is given, the source projects logo will be used.
+        metadata:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: boolean
+          type: object
+          title: Metadata
+          description: request metadata
+        correlation_id:
+          type: string
+          maxLength: 100
+          title: Correlation Id
+          description: request correlation id
+      type: object
+      required:
+      - type
+      - scenes
+      title: OverrideVideoRequest
+    VideoStatusEnum:
+      type: string
+      enum:
+      - started
+      - processing
+      - ready
+      - published
+      - failed
+      - not_started
+      - stopped
+      - cancelled
+      title: VideoStatusEnum
+      description: An enumeration.
+    SceneMetadataResponse:
+      properties:
+        scene_index:
+          type: integer
+          title: Scene Index
+        start_time:
+          type: number
+          title: Start Time
         duration:
           type: number
           title: Duration
-        scenes_metadata:
-          items:
-            $ref: '#/components/schemas/SceneMetadataResponse'
-          type: array
-          title: Scenes Metadata
       type: object
       required:
+      - scene_index
+      - start_time
       - duration
-      - scenes_metadata
-      title: VideoMetadataResponse
+      title: SceneMetadataResponse
+    SupportedTranslationSubtitlesLanguagesCode:
+      type: string
+      enum:
+      - en
+      - es
+      - de
+      - pt
+      - it
+      - fr
+      - nl
+      - ja
+      - tr
+      - pl
+      - hu
+      - cz
+      - he
+      - zh
+      - hi
+      - ru
+      - ko
+      - ar
+      title: SupportedTranslationSubtitlesLanguagesCode
+      description: An enumeration.
     SubtitlesApiRequest:
       properties:
         language_code:
@@ -679,34 +636,6 @@ components:
       required:
       - value
       title: VariableMapping
-    SubtitlesApiResponse:
-      properties:
-        language_code:
-          $ref: '#/components/schemas/SupportedTranslationSubtitlesLanguagesCode'
-        format:
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesFileExtension'
-          default: vtt
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - language_code
-      - url
-      title: SubtitlesApiResponse
-    SceneTextAttribute:
-      properties:
-        id:
-          type: string
-          title: Id
-        text:
-          type: string
-          title: Text
-      type: object
-      required:
-      - text
-      title: SceneTextAttribute
     SubtitlesFileExtension:
       type: string
       enum:
@@ -714,6 +643,77 @@ components:
       - srt
       title: SubtitlesFileExtension
       description: An enumeration.
+    NewVideoRequest:
+      properties:
+        type:
+          type: string
+          enum:
+          - create
+          title: Type
+        name:
+          type: string
+          title: Name
+          description: The name of the project created by this request
+        template_id:
+          type: string
+          title: Template Id
+          description: The id of the recipe your video will be based on.
+        folder_id:
+          type: string
+          title: Folder Id
+          description: The id of the folder your video will be based on.
+        palette_id:
+          type: string
+          title: Palette Id
+          description: The palette_id of a color-palette you would like to use instead of the source project one. if no value is given, the source projects color-palette will be used.
+        character_id:
+          type: string
+          title: Character Id
+          description: The character_id of a character you would like to use instead of the source projects one. if no value is given, the source projects character will be used.
+        voice_id:
+          type: string
+          title: Voice Id
+          description: The id of a voice you would like to use instead of the source projects one. if no value is given, the source projects voice will be used.
+        scenes:
+          items:
+            $ref: '#/components/schemas/NewVideoScene'
+          type: array
+          minItems: 1
+          title: Scenes
+          description: 'Each object in this array will represent a scene in the final video. the video will be generated based on this arrays order (the first object in this array will represent the first scene in the video etc.). The length of this array must be equal to the number of the source projects scenes. '
+        global_media_elements:
+          items:
+            $ref: '#/components/schemas/SceneMediaAttribute'
+          type: array
+          title: Global Media Elements
+          description: The array will contain global media values of the video
+        palette:
+          items:
+            $ref: '#/components/schemas/RequestPalette'
+          type: array
+          title: Palette
+        metadata:
+          additionalProperties:
+            anyOf:
+            - type: string
+            - type: integer
+            - type: boolean
+          type: object
+          title: Metadata
+          description: request metadata
+        correlation_id:
+          type: string
+          maxLength: 100
+          title: Correlation Id
+          description: request correlation id
+      type: object
+      required:
+      - type
+      - template_id
+      - character_id
+      - voice_id
+      - scenes
+      title: NewVideoRequest
   securitySchemes:
     APIKeyHeader:
       type: apiKey

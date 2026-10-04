@@ -65,25 +65,31 @@ paths:
       - APIKeyHeader: []
 components:
   schemas:
-    TaskProgressResponse:
+    CreateVoicePreviewResponse:
       properties:
         id:
           type: string
           title: Id
+        transcript:
+          type: string
+          title: Transcript
+        voice_id:
+          type: string
+          title: Voice Id
         req_id:
           type: string
           title: Req Id
         status:
-          $ref: '#/components/schemas/StatusTypes'
-        url:
-          type: string
-          title: Url
+          allOf:
+          - $ref: '#/components/schemas/StatusTypes'
+          default: in_progress
       type: object
       required:
       - id
+      - transcript
+      - voice_id
       - req_id
-      - status
-      title: TaskProgressResponse
+      title: CreateVoicePreviewResponse
     ValidationError:
       properties:
         loc:
@@ -113,6 +119,34 @@ components:
       - failed
       title: StatusTypes
       description: An enumeration.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    TaskProgressResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        req_id:
+          type: string
+          title: Req Id
+        status:
+          $ref: '#/components/schemas/StatusTypes'
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - id
+      - req_id
+      - status
+      title: TaskProgressResponse
     VoicePreviewRequest:
       properties:
         transcript:
@@ -126,40 +160,6 @@ components:
       - transcript
       - source_draft_id
       title: VoicePreviewRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CreateVoicePreviewResponse:
-      properties:
-        id:
-          type: string
-          title: Id
-        transcript:
-          type: string
-          title: Transcript
-        voice_id:
-          type: string
-          title: Voice Id
-        req_id:
-          type: string
-          title: Req Id
-        status:
-          allOf:
-          - $ref: '#/components/schemas/StatusTypes'
-          default: in_progress
-      type: object
-      required:
-      - id
-      - transcript
-      - voice_id
-      - req_id
-      title: CreateVoicePreviewResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey
