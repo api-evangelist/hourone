@@ -64,6 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hourone is a company surfaced as a portfolio company of kindred-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Hour One (developer surface "MakeReals") is an AI video-generation platform that turns text, scripts and data into studio-quality videos fronted by lifelike AI presenters (characters) and text-to-speech voices. Its REST API lets developers create videos programmatically two ways — from a Blueprint (an existing HourOne studio project/template) or Dynamically (scenes built from scratch with media, text, palette, character and voice) — preview voices, generate multi-language subtitles, pull usage analytics, manage API keys, and subscribe to video.ready / video.failed webhooks. The API is asynchronous (create, then poll by id or receive a signed webhook) and authenticates with a single api-key header. Common uses include personalized video at scale, L&D and training content, CRM/LMS automation, and localized marketing video. Hour One is a portfolio company of Kindred Ventures.
 
-Backed by: kindred-ventures — https://hourone.ai/
+**Areas:** Company · Artificial Intelligence · Video · Video Generation · Generative AI · AI Avatars · Text-to-Speech · Media · Content Creation · Webhook
+
+## Hourone on APIs.io
+
+Everything profiled for Hourone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hourone/](https://apis.io/providers/hourone/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Hourone General API](https://apis.io/apis/hourone/hourone-general-api/) — The general API from Hourone — 3 operation(s) for general.
+- [Hourone Keys API](https://apis.io/apis/hourone/hourone-keys-api/) — The keys API from Hourone — 2 operation(s) for keys.
+- [Hourone Playground API](https://apis.io/apis/hourone/hourone-playground-api/) — The playground API from Hourone — 4 operation(s) for playground.
+- [Hourone Videos API](https://apis.io/apis/hourone/hourone-videos-api/) — The videos API from Hourone — 4 operation(s) for videos.
+- [Hourone Voice Preview API](https://apis.io/apis/hourone/hourone-voice-preview-api/) — The voice-preview API from Hourone — 2 operation(s) for voice-preview.
+- [Hourone Webhook API](https://apis.io/apis/hourone/hourone-webhook-api/) — The webhook API from Hourone — 5 operation(s) for webhook.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (2)
+
+Event-driven and webhook contracts.
+
+- [Hourone Webhooks](https://apis.io/asyncapis/hourone/hourone-webhooks/)
+- [Hour One (MakeReals) Webhooks](https://apis.io/asyncapis/hourone/hourone-webhooks-asyncapi/)
+
+#### Event channels (1)
+
+Individual events and webhooks the provider emits.
+
+- [{subscriberUrl}](https://apis.io/channels/hourone/subscriberurl/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [hourone](https://apis.io/servers/hourone/hourone/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Hourone Agentic Access](https://apis.io/agentic-access/hourone/hourone-agentic-access/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [sizzle-server general API](https://apis.io/collections/hourone/open-hourone-general-api/)
+- [sizzle-server general keys API](https://apis.io/collections/hourone/open-hourone-keys-api/)
+- [sizzle-server general playground API](https://apis.io/collections/hourone/open-hourone-playground-api/)
+- [sizzle-server general videos API](https://apis.io/collections/hourone/open-hourone-videos-api/)
+- [sizzle-server general webhook API](https://apis.io/collections/hourone/open-hourone-webhook-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hourone Openapi Overlay](https://apis.io/overlays/hourone/hourone-openapi-overlay/)
+- [Hourone Overlay](https://apis.io/overlays/hourone/hourone-overlay/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hourone Authentication](https://apis.io/security/hourone/hourone-authentication/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hourone.ai/)
+- [Documentation](https://hourone.gitbook.io/api-docs)
+- [Getting started](https://hourone.gitbook.io/api-docs/blueprint-quick-start)
+- [API reference](https://hourone.gitbook.io/api-docs/reference/api-reference)
+- [Sign up](https://app.hourone.ai)
+- [Support](https://help.hourone.ai/hc/en-us/categories/8918170914449-Hour-One)
+- [GitHub](https://github.com/hourone-ai)
+
+## API Evangelist rating
+
+**Kin Score 33.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 6.6 |
+
+**Agent readiness 28.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.0** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hourone/](https://apis.io/providers/hourone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hourone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hourone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
